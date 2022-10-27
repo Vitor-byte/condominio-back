@@ -23,7 +23,7 @@ class incluirCondominoCaso {
             if (verifica_email.rows[0].count != 0) {
                 return "Email invalido!";
             }
-            const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome_completo, senha, email, situacao, inadimplente) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente]);
+            const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome_completo, senha, email, situacao) VALUES ($1, $2, $3, $4, $5) RETURNING *', [rg, nome, senha, email, "Ativo"]);
             return condomino.rows;
         });
     }

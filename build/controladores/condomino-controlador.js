@@ -13,6 +13,7 @@ exports.condominoControlador = void 0;
 const incluir_condomino_caso_1 = require("../casos-uso/condomino/incluir-condomino-caso");
 const excluir_condomino_caso_1 = require("../casos-uso/condomino/excluir-condomino-caso");
 const alterar_condomino_caso_1 = require("../casos-uso/condomino/alterar-condomino-caso");
+const consultar_condomino_caso_1 = require("../casos-uso/condomino/consultar-condomino-caso");
 class condominoControlador {
     incluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,6 +35,12 @@ class condominoControlador {
     alterar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new alterar_condomino_caso_1.alterarCondominoCaso().alterar(request.params, request.body);
+            return response.status(201).json(resultado);
+        });
+    }
+    consultar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultar_condomino_caso_1.consultarCondominoCaso().consultar();
             return response.status(201).json(resultado);
         });
     }

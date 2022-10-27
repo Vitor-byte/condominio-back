@@ -9,3 +9,4 @@ exports.router = router;
 router.post("/condomino", new condomino_controlador_1.condominoControlador().incluir);
 router.delete("/condomino/:id", new condomino_controlador_1.condominoControlador().excluir);
 router.patch("/condomino/:id", new condomino_controlador_1.condominoControlador().alterar);
+router.get("/condominos", new condomino_controlador_1.condominoControlador().consultar);
