@@ -22,7 +22,7 @@ class consultarCondominoCaso {
     consultar() {
         return __awaiter(this, void 0, void 0, function* () {
             const condominos = yield postgres_1.client.query('SELECT * FROM condomino LIMIT 10');
-            return condominos;
+            return condominos.rows;
         });
     }
 }
