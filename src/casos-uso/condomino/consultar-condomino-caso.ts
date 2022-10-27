@@ -11,6 +11,6 @@ export class consultarCondominoCaso{
     async consultar(){
         
         const condominos = await client.query('SELECT * FROM condomino LIMIT 10');
-        return "teste";
+        return condominos;
     }
 }
