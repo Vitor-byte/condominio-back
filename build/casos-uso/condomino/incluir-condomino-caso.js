@@ -11,17 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.incluirCondominoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
+const api_erros_1 = require("../../helpers/api-erros");
 class incluirCondominoCaso {
     incluir(reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { rg, nome, senha, email, inadimplente } = reqBody;
             const verifica_rg = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [rg]);
             if (verifica_rg.rows[0].count != 0) {
-                return "RG invalido!";
+                throw new api_erros_1.BadRequestError('RG invalido!');
             }
             const verifica_email = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [email]);
             if (verifica_email.rows[0].count != 0) {
-                return "Email invalido!";
+                throw new api_erros_1.BadRequestError('Email invalido!');
             }
             const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome_completo, senha, email, situacao) VALUES ($1, $2, $3, $4, $5) RETURNING *', [rg, nome, senha, email, "Ativo"]);
             return condomino.rows;
