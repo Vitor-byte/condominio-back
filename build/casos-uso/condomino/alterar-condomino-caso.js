@@ -11,17 +11,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.alterarCondominoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
+const api_erros_1 = require("../../helpers/api-erros");
 class alterarCondominoCaso {
-    alterar(reqParams, reqBody) {
+    handle(reqParams, data) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const { rg, nome, senha, bloco, unidade } = reqBody;
-            const verifica_rg = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [rg]);
-            if (verifica_rg.rows[0].count != 0) {
-                return "RG invalido!";
+            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [data.rg]);
+            if (rgExiste.rows[0].count > 0) {
+                throw new api_erros_1.BadRequestError('RG inválido!');
             }
-            const condomino = yield postgres_1.client.query('UPDATE condomino SET rg=$2, nome_completo=$3, senha=$4, bloco=$5, unidade=$6 WHERE id_condomino=$1 RETURNING *', [id, rg, nome, bloco, unidade]);
-            return condomino;
+            const condomino = yield postgres_1.client.query('UPDATE condomino SET rg=$2, nome=$3, senha=$4, bloco=$5, unidade=$6 WHERE id_condomino=$1 RETURNING *', [id, data.rg, data.nome, data.bloco, data.unidade]);
+            return condomino.rows;
         });
     }
 }

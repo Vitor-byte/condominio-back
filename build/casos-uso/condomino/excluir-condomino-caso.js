@@ -13,15 +13,16 @@ exports.excluirCondominoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
 class excluirCondominoCaso {
-    excluir(reqParams) {
+    handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
             const verifica_relacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_condomino=$1', [id]);
-            if (verifica_relacao.rows[0].count != 0) {
-                return new api_erros_1.BadRequestError('Email invalido!');
+            const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE id_condomino=$1', [id]);
+            if (usuarioExiste.rows[0].count == 0) {
+                throw new api_erros_1.BadRequestError("Usuario não existe!");
             }
             const condomino = yield postgres_1.client.query('DELETE FROM condomino WHERE id_condomino=$1 RETURNING *', [id]);
-            return condomino;
+            return condomino.rows;
         });
     }
 }
