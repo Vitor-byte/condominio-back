@@ -18,8 +18,10 @@ class alterarAvisoCaso {
             const { id } = reqParams;
             const { titulo, descricao } = reqbody;
             const avisoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1', [id]);
-            if (avisoExiste.rows[0].count > 0) {
-                new api_erros_1.BadRequestError('Aviso não existe!');
+            console.log(avisoExiste);
+            if (avisoExiste.rows[0].count == 0) {
+                console.log("teste");
+                throw new api_erros_1.BadRequestError('Aviso não existe!');
             }
             const aviso = yield postgres_1.client.query('UPDATE aviso SET titulo=$2, descricao=$3 WHERE id_aviso=$1 RETURNING *', [id, titulo, descricao]);
             return aviso.rows;
