@@ -21,8 +21,8 @@ class alterarAvisoCaso {
             if (avisoExiste.rows[0].count > 0) {
                 new api_erros_1.BadRequestError('Aviso não existe!');
             }
-            const condomino = yield postgres_1.client.query('UPDATE aviso SET titulo=$2, descricao=$3 WHERE id_aviso=$1 RETURNING *', [id, titulo, descricao]);
-            return condomino.rows;
+            const aviso = yield postgres_1.client.query('UPDATE aviso SET titulo=$2, descricao=$3 WHERE id_aviso=$1 RETURNING *', [id, titulo, descricao]);
+            return aviso.rows;
         });
     }
 }
