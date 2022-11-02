@@ -6,7 +6,7 @@ export class alterarCondominoCaso{
         const {id} = reqParams;
         const {rg, nome, bloco, unidade} = reqbody;
 
-        const rgExiste = await client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1 AND id_condominio !=$2',[rg, id]);
+        const rgExiste = await client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1 AND id_condomino !=$2',[rg, id]);
         
         if(rgExiste.rows[0].count > 0){
             throw new BadRequestError('RG inválido!');
