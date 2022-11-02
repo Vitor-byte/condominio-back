@@ -21,7 +21,7 @@ class alterarSindicoCaso {
             if (sindicoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError("Síndico não existe!");
             }
-            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM sindico WHERE rg=$1 AND id_sindico=$2', [rg, id]);
+            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM sindico WHERE rg=$1 AND id_sindico!=$2', [rg, id]);
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
             }
