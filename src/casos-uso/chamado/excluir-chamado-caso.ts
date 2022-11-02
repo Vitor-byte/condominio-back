@@ -9,7 +9,7 @@ export class excluirAvisoCaso{
         const {id} = reqParams;
         
         const avisoExiste = await client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1',[id]);
-        console.log(avisoExiste);
+
         if(avisoExiste.rows[0].count == 0){
             throw new BadRequestError("Aviso não existe!");
         }

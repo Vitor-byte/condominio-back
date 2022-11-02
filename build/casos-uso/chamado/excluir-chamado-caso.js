@@ -9,20 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alterarAvisoCaso = void 0;
+exports.excluirAvisoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
-class alterarAvisoCaso {
-    handle(reqParams, data) {
+class excluirAvisoCaso {
+    handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const avisoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM aviso WHERE rg=$1', [id]);
-            if (avisoExiste.rows[0].count > 0) {
-                new api_erros_1.BadRequestError('Aviso não existe!');
+            const avisoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1', [id]);
+            if (avisoExiste.rows[0].count == 0) {
+                throw new api_erros_1.BadRequestError("Aviso não existe!");
             }
-            const condomino = yield postgres_1.client.query('UPDATE condomino SET rg=$2, nome_completo=$3, senha=$4, bloco=$5, unidade=$6 WHERE id_condomino=$1 RETURNING *', [id, data.titulo, data.descricao]);
-            return condomino.rows;
+            const aviso = yield postgres_1.client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *', [id]);
+            return aviso;
         });
     }
 }
-exports.alterarAvisoCaso = alterarAvisoCaso;
+exports.excluirAvisoCaso = excluirAvisoCaso;
