@@ -11,7 +11,7 @@ export class alterarSindicoCaso{
         if(sindicoExiste.rows[0].count == 0){
             throw new BadRequestError("Síndico não existe!");
         }
-        const rgExiste = await client.query('SELECT COUNT(1) FROM sindico WHERE rg=$1 AND id_sindico!=$2',[rg, id])
+        const rgExiste = await client.query('SELECT COUNT(1) FROM sindico WHERE rg=$1 AND id_sindico!=$2',[rg, id]);
         
         if(rgExiste.rows[0].count > 0){
             throw new BadRequestError('RG inválido!');
