@@ -9,8 +9,9 @@ export class excluirSindicoCaso{
         const {id} = reqParams;
         
         const usuarioExiste = await client.query('SELECT COUNT(1) FROM sindico WHERE id_sindico=$1',[id]);
+        
         if(usuarioExiste.rows[0].count == 0){
-            throw new BadRequestError("Usuario não existe!");
+            throw new BadRequestError("Síndico não existe!");
         }
 
         const sindico = await client.query('DELETE FROM sindico WHERE id_sindico=$1 RETURNING *',[id]);
