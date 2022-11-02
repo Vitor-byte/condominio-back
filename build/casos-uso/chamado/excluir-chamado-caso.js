@@ -9,20 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.excluirAvisoCaso = void 0;
+exports.excluirChamadoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
-class excluirAvisoCaso {
+class excluirChamadoCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const avisoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1', [id]);
-            if (avisoExiste.rows[0].count == 0) {
-                throw new api_erros_1.BadRequestError("Aviso não existe!");
+            const chamadoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1', [id]);
+            if (chamadoExiste.rows[0].count == 0) {
+                throw new api_erros_1.BadRequestError("Chamado não existe!");
             }
-            const aviso = yield postgres_1.client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *', [id]);
-            return aviso;
+            const chamadoSituacao = yield postgres_1.client.query('SELECT situacao FROM chamado WHERE id_chamado=$1 AND situacao=$2', [id, "Aberto"]);
+            if (chamadoSituacao.rows[0].count > 0) {
+                throw new api_erros_1.BadRequestError("Chamado não pode ser excluido!");
+            }
+            const chamado = yield postgres_1.client.query('DELETE FROM chamado WHERE id_chamado=$1 RETURNING *', [id]);
+            return chamado;
         });
     }
 }
-exports.excluirAvisoCaso = excluirAvisoCaso;
+exports.excluirChamadoCaso = excluirChamadoCaso;

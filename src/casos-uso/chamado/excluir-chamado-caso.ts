@@ -4,17 +4,24 @@ import {client} from '../../conexao-banco/postgres'
 import { BadRequestError } from '../../helpers/api-erros';
 
 
-export class excluirAvisoCaso{
+export class excluirChamadoCaso{
     async handle(reqParams: any){
         const {id} = reqParams;
         
-        const avisoExiste = await client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1',[id]);
+        const chamadoExiste = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1',[id]);
 
-        if(avisoExiste.rows[0].count == 0){
-            throw new BadRequestError("Aviso não existe!");
+        if(chamadoExiste.rows[0].count == 0){
+            throw new BadRequestError("Chamado não existe!");
         }
 
-        const aviso = await client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *',[id]);
-        return aviso;
+        const chamadoSituacao = await client.query('SELECT situacao FROM chamado WHERE id_chamado=$1 AND situacao=$2',[id, "Aberto"]);
+
+        if(chamadoSituacao.rows[0].count > 0){
+            throw new BadRequestError("Chamado não pode ser excluido!");
+
+        }
+        const chamado = await client.query('DELETE FROM chamado WHERE id_chamado=$1 RETURNING *',[id]);
+
+        return chamado;
     }
 }

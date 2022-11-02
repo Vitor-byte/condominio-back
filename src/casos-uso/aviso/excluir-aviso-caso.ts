@@ -15,6 +15,6 @@ export class excluirAvisoCaso{
         }
 
         const aviso = await client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *',[id]);
-        return aviso;
+        return aviso.rows;
     }
 }
