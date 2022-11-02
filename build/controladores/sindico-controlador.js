@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.avisoControlador = void 0;
+exports.sindicoControlador = void 0;
 const alterar_sindico_caso_1 = require("../casos-uso/sindico/alterar-sindico-caso");
 const consultar_sindico_caso_1 = require("../casos-uso/sindico/consultar-sindico-caso");
 const excluir_sindico_caso_1 = require("../casos-uso/sindico/excluir-sindico-caso");
 const incluir_sindico_caso_1 = require("../casos-uso/sindico/incluir-sindico-caso");
-class avisoControlador {
+class sindicoControlador {
     incluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new incluir_sindico_caso_1.incluirSindicoCaso().handle(request.body);
@@ -40,4 +40,4 @@ class avisoControlador {
         });
     }
 }
-exports.avisoControlador = avisoControlador;
+exports.sindicoControlador = sindicoControlador;

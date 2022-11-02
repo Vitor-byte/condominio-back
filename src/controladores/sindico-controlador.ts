@@ -4,7 +4,7 @@ import { consultarSindicoCaso } from '../casos-uso/sindico/consultar-sindico-cas
 import { excluirSindicoCaso } from '../casos-uso/sindico/excluir-sindico-caso';
 import { incluirSindicoCaso } from '../casos-uso/sindico/incluir-sindico-caso';
 
-export class avisoControlador{
+export class sindicoControlador{
     async incluir(request: Request, response: Response){
         const resultado = await new incluirSindicoCaso().handle(request.body);
         return response.status(200).json(resultado);
