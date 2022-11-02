@@ -13,7 +13,7 @@ export class alterarCondominoCaso{
             throw new BadRequestError('RG inválido!');
         }
 
-        const condomino = await client.query('UPDATE condomino SET rg=$2, nome=$3, senha=$4, bloco=$5, unidade=$6 WHERE id_condomino=$1 RETURNING *',
+        const condomino = await client.query('UPDATE condomino SET rg=$2, nome=$3, bloco=$4, unidade=$5 WHERE id_condomino=$1 RETURNING *',
         [id, rg, nome, bloco, unidade]);
 
         return condomino.rows;

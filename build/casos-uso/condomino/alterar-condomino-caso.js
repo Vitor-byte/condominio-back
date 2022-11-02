@@ -21,7 +21,7 @@ class alterarCondominoCaso {
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
             }
-            const condomino = yield postgres_1.client.query('UPDATE condomino SET rg=$2, nome=$3, senha=$4, bloco=$5, unidade=$6 WHERE id_condomino=$1 RETURNING *', [id, rg, nome, bloco, unidade]);
+            const condomino = yield postgres_1.client.query('UPDATE condomino SET rg=$2, nome=$3, bloco=$4, unidade=$5 WHERE id_condomino=$1 RETURNING *', [id, rg, nome, bloco, unidade]);
             return condomino.rows;
         });
     }

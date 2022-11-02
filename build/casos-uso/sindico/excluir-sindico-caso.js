@@ -18,7 +18,7 @@ class excluirSindicoCaso {
             const { id } = reqParams;
             const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM sindico WHERE id_sindico=$1', [id]);
             if (usuarioExiste.rows[0].count == 0) {
-                throw new api_erros_1.BadRequestError("Usuario não existe!");
+                throw new api_erros_1.BadRequestError("Síndico não existe!");
             }
             const sindico = yield postgres_1.client.query('DELETE FROM sindico WHERE id_sindico=$1 RETURNING *', [id]);
             return sindico.rows;
