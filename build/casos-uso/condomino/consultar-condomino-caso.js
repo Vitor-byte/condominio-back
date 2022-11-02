@@ -15,7 +15,7 @@ class consultarCondominoCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
             const condominos = yield postgres_1.client.query('SELECT * FROM condomino');
-            return condominos.avisos;
+            return condominos.rows;
         });
     }
 }

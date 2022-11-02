@@ -6,6 +6,6 @@ export class consultarCondominoCaso{
     async handle(){
         const condominos = await client.query('SELECT * FROM condomino');
 
-        return condominos.avisos;
+        return condominos.rows;
     }
 }
