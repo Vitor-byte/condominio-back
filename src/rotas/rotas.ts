@@ -21,6 +21,6 @@ router.get("/avisos", new avisoControlador().consultar);
 router.post("/sindico", new sindicoControlador().incluir);
 router.delete("/sindico/:id", new sindicoControlador().excluir);
 router.patch("/sindico/:id", new sindicoControlador().alterar);
-router.get("/sindico", new sindicoControlador().consultar);
+router.get("/sindicos", new sindicoControlador().consultar);
 
 export{router};
