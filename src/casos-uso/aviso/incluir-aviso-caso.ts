@@ -5,7 +5,7 @@ export class incluirAvisoCaso{
            
         const aviso = await client.query('INSERT INTO aviso(titulo, descricao) VALUES ($1, $2) RETURNING *',
         [titulo, descricao]);
-
+        
         return aviso.rows;
     }
 }
