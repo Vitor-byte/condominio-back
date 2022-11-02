@@ -21,7 +21,7 @@ class excluirAvisoCaso {
                 throw new api_erros_1.BadRequestError("Aviso não existe!");
             }
             const aviso = yield postgres_1.client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *', [id]);
-            return aviso;
+            return aviso.rows;
         });
     }
 }
