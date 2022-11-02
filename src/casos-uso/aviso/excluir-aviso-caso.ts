@@ -10,10 +10,10 @@ export class excluirAvisoCaso{
         
         const avisoExiste = await client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1',[id]);
         console.log(avisoExiste);
-        if(avisoExiste.rows[0].count == 0){
+        if(avisoExiste.rows[0].count > 0){
             throw new BadRequestError("Aviso não existe!");
         }
-
+screen
         const aviso = await client.query('DELETE FROM aviso WHERE id_aviso=$1 RETURNING *',[id]);
         return aviso;
     }

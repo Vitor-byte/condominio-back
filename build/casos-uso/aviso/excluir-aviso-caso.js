@@ -17,6 +17,7 @@ class excluirAvisoCaso {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
             const avisoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM aviso WHERE id_aviso=$1', [id]);
+            console.log(avisoExiste);
             if (avisoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError("Aviso não existe!");
             }
