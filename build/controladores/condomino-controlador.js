@@ -17,30 +17,25 @@ const consultar_condomino_caso_1 = require("../casos-uso/condomino/consultar-con
 class condominoControlador {
     incluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new incluir_condomino_caso_1.incluirCondominoCaso().incluir(request.body);
-            if (typeof resultado == 'string') {
-                return response.status(200).json(resultado);
-            }
-            else {
-                return response.status(201).json(resultado);
-            }
+            const resultado = yield new incluir_condomino_caso_1.incluirCondominoCaso().handle(request.body);
+            return response.status(200).json(resultado);
         });
     }
     excluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new excluir_condomino_caso_1.excluirCondominoCaso().excluir(request.params);
+            const resultado = yield new excluir_condomino_caso_1.excluirCondominoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }
     alterar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new alterar_condomino_caso_1.alterarCondominoCaso().alterar(request.params, request.body);
+            const resultado = yield new alterar_condomino_caso_1.alterarCondominoCaso().handle(request.params, request.body);
             return response.status(201).json(resultado);
         });
     }
     consultar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new consultar_condomino_caso_1.consultarCondominoCaso().consultar();
+            const resultado = yield new consultar_condomino_caso_1.consultarCondominoCaso().handle();
             return response.status(201).json(resultado);
         });
     }

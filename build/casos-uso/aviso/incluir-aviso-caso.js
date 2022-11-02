@@ -12,9 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.incluirAvisoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 class incluirAvisoCaso {
-    handle(data) {
+    handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao) VALUES ($1, $2) RETURNING *', [data.titulo, data.descricao]);
+            const { titulo, descricao } = reqbody;
+            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao) VALUES ($1, $2) RETURNING *', [titulo, descricao]);
             return aviso.rows;
         });
     }

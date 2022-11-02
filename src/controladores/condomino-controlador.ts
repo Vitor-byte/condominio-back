@@ -6,23 +6,19 @@ import { consultarCondominoCaso} from '../casos-uso/condomino/consultar-condomin
 
 export class condominoControlador{
     async incluir(request: Request, response: Response){
-        const resultado = await new incluirCondominoCaso().incluir(request.body);
-        if(typeof resultado == 'string'){
-            return response.status(200).json(resultado);
-        }else{
-            return response.status(201).json(resultado);
-        }
+        const resultado = await new incluirCondominoCaso().handle(request.body);
+        return response.status(200).json(resultado);
     }
     async excluir(request: Request, response: Response){
-        const resultado = await new excluirCondominoCaso().excluir(request.params);
+        const resultado = await new excluirCondominoCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
     async alterar(request: Request, response: Response){
-        const resultado = await new alterarCondominoCaso().alterar(request.params, request.body);
+        const resultado = await new alterarCondominoCaso().handle(request.params, request.body);
         return response.status(201).json(resultado);
     }
     async consultar(request: Request, response: Response){
-        const resultado = await new consultarCondominoCaso().consultar();
-        return response.status(201).json(resultado);
+        const resultado = await new consultarCondominoCaso().handle();
+         return response.status(201).json(resultado);
     }
 }

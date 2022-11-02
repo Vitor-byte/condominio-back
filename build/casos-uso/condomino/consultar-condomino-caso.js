@@ -12,17 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.consultarCondominoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 class consultarCondominoCaso {
-    consultarId(reqParams) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { id } = reqParams;
-            const condomino = yield postgres_1.client.query('SELECT * FROM condomino WHERE id=$1', [id]);
-            return condomino;
-        });
-    }
-    consultar() {
+    handle() {
         return __awaiter(this, void 0, void 0, function* () {
             const condominos = yield postgres_1.client.query('SELECT * FROM condomino LIMIT 10');
-            return condominos.rows;
+            return condominos;
         });
     }
 }

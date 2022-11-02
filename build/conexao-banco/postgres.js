@@ -8,7 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 const isProduction = process.env.NODE_ENV === 'production';
 const { Client } = require("pg");
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`;
+const connectionString = 'postgresql://Vitor:15340154@localhost:5432/condominio';
 const client = new Client({
     connectionString: isProduction ? process.env.DATABASE_URL : connectionString
 });

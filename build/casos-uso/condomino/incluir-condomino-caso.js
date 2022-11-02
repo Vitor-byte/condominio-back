@@ -13,17 +13,18 @@ exports.incluirCondominoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
 class incluirCondominoCaso {
-    handle(data) {
+    handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [data.rg]);
+            const { rg, nome, senha, email, inadimplente } = reqbody;
+            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [rg]);
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
             }
-            const emailExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE email=$1', [data.email]);
+            const emailExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE email=$1', [email]);
             if (emailExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('Email inválido!');
             }
-            const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome, senha, email, situacao, inadimplente) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [data.rg, data.nome, data.senha, data.email, "Ativo", data.inadimplente]);
+            const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome, senha, email, situacao, inadimplente) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente]);
             return condomino.rows;
         });
     }
