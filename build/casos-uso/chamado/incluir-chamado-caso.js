@@ -12,10 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.incluirChamadoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 class incluirChamadoCaso {
-    handle(reqbody) {
+    handle(reqParams, reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { id_condomino } = reqParams;
             const { titulo, descricao } = reqbody;
-            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao) VALUES ($1, $2, $3) RETURNING *', [titulo, descricao, "Aberto"]);
+            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao, id_condomino) VALUES ($1, $2, $3, $4) RETURNING *', [titulo, descricao, "Aberto", id_condomino]);
             return chamado.rows;
         });
     }
