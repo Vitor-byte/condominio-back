@@ -14,9 +14,9 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class incluirChamadoCaso {
     handle(reqParams, reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id_condomino } = reqParams;
+            const { id_usuario } = reqParams;
             const { titulo, descricao } = reqbody;
-            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao, id_condomino) VALUES ($1, $2, $3, $4) RETURNING *', [titulo, descricao, "Aberto", id_condomino]);
+            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao, id_usuario) VALUES ($1, $2, $3, $4) RETURNING *', [titulo, descricao, "Aberto", id_usuario]);
             return chamado.rows;
         });
     }
