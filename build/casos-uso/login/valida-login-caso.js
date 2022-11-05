@@ -9,21 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alterarCondominoCaso = void 0;
+exports.validaLoginCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
-class alterarCondominoCaso {
-    handle(reqParams, reqbody) {
+class validaLoginCaso {
+    handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = reqParams;
-            const { rg, nome, bloco, unidade } = reqbody;
-            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE rg=$1 AND id_usuario !=$2', [rg, id]);
-            if (rgExiste.rows[0].count > 0) {
-                throw new api_erros_1.BadRequestError('RG inválido!');
+            const { email, senha } = reqbody;
+            const loginExiste = yield postgres_1.client.query('SELECT * FROM condomino WHERE email=$1 AND senha=$2 AND situacao=$3', [email, senha, "Ativo"]);
+            if (!loginExiste) {
+                throw new api_erros_1.BadRequestError('Usuário ou senha Inválido!');
             }
-            const usuario = yield postgres_1.client.query('UPDATE usuario SET rg=$2, nome=$3, bloco=$4, unidade=$5 WHERE id_usuario=$1 RETURNING *', [id, rg, nome, bloco, unidade]);
-            return usuario.rows;
+            return loginExiste.rows;
         });
     }
 }
-exports.alterarCondominoCaso = alterarCondominoCaso;
+exports.validaLoginCaso = validaLoginCaso;

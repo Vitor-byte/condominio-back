@@ -16,16 +16,16 @@ class incluirCondominoCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { rg, nome, senha, email, inadimplente } = reqbody;
-            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE rg=$1', [rg]);
+            const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE rg=$1', [rg]);
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
             }
-            const emailExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE email=$1', [email]);
+            const emailExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE email=$1', [email]);
             if (emailExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('Email inválido!');
             }
-            const condomino = yield postgres_1.client.query('INSERT INTO condomino(rg, nome, senha, email, situacao, inadimplente) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente]);
-            return condomino.rows;
+            const usuario = yield postgres_1.client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente, "C"]);
+            return usuario.rows;
         });
     }
 }

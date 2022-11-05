@@ -16,13 +16,13 @@ class excluirCondominoCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const verifica_relacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_condomino=$1', [id]);
-            const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM condomino WHERE id_condomino=$1', [id]);
+            const verifica_relacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_usuario=$1', [id]);
+            const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE id_usuario=$1', [id]);
             if (usuarioExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError("Usuario não existe!");
             }
-            const condomino = yield postgres_1.client.query('DELETE FROM condomino WHERE id_condomino=$1 RETURNING *', [id]);
-            return condomino.rows;
+            const usuario = yield postgres_1.client.query('DELETE FROM usuario WHERE id_usuario=$1 RETURNING *', [id]);
+            return usuario.rows;
         });
     }
 }

@@ -4,8 +4,8 @@ import {client} from '../../conexao-banco/postgres';
 
 export class consultarCondominoCaso{
     async handle(){
-        const condominos = await client.query('SELECT * FROM condomino');
+        const usuarios = await client.query('SELECT * FROM usuario WHERE tipo=$1',["C"]);
 
-        return condominos.rows;
+        return usuarios.rows;
     }
 }

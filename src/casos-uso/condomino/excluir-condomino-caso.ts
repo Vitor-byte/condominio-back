@@ -8,15 +8,15 @@ export class excluirCondominoCaso{
     async handle(reqParams: any){
         const {id} = reqParams;
 
-        const verifica_relacao= await client.query('SELECT COUNT(1) FROM chamado WHERE id_condomino=$1',[id]);
+        const verifica_relacao= await client.query('SELECT COUNT(1) FROM chamado WHERE id_usuario=$1',[id]);
 
-        const usuarioExiste = await client.query('SELECT COUNT(1) FROM condomino WHERE id_condomino=$1',[id]);
+        const usuarioExiste = await client.query('SELECT COUNT(1) FROM usuario WHERE id_usuario=$1',[id]);
         if(usuarioExiste.rows[0].count == 0){
             throw new BadRequestError("Usuario não existe!");
         }
 
-        const condomino = await client.query('DELETE FROM condomino WHERE id_condomino=$1 RETURNING *',[id]);
+        const usuario = await client.query('DELETE FROM usuario WHERE id_usuario=$1 RETURNING *',[id]);
         
-        return condomino.rows;
+        return usuario.rows;
     }
 }
