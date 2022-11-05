@@ -17,7 +17,7 @@ export class incluirCondominoCaso{
         }
 
         const usuario = await client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-        [rg, nome, senha, email, "Ativo", inadimplente, "C"]);
+        [rg, nome, senha, email, "Ativo", inadimplente, "Condomino"]);
 
         return usuario.rows;
     }
