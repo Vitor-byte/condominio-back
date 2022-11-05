@@ -17,6 +17,10 @@ class alterarCondominoCaso {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
             const { rg, nome, bloco, unidade } = reqbody;
+            const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE id_usuario=$1', [id]);
+            if (usuarioExiste.rows[0].count == 0) {
+                throw new api_erros_1.BadRequestError("Usuario não existe!");
+            }
             const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE rg=$1 AND id_usuario !=$2', [rg, id]);
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');

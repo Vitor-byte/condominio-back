@@ -6,6 +6,13 @@ export class alterarCondominoCaso{
         const {id} = reqParams;
         const {rg, nome, bloco, unidade} = reqbody;
 
+        
+        const usuarioExiste = await client.query('SELECT COUNT(1) FROM usuario WHERE id_usuario=$1',[id]);
+        
+        if(usuarioExiste.rows[0].count == 0){
+            throw new BadRequestError("Usuario não existe!");
+        }
+        
         const rgExiste = await client.query('SELECT COUNT(1) FROM usuario WHERE rg=$1 AND id_usuario !=$2',[rg, id]);
         
         if(rgExiste.rows[0].count > 0){
