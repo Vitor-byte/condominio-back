@@ -15,7 +15,7 @@ class consultaIdChamadoCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE id=$1 RETURNING *', [id]);
+            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE id_usuario=$1', [id]);
             return chamados.rows;
         });
     }
