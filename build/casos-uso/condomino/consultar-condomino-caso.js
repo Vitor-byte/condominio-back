@@ -14,7 +14,7 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class consultarCondominoCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const usuarios = yield postgres_1.client.query('SELECT * FROM usuario WHERE tipo=$1', ["C"]);
+            const usuarios = yield postgres_1.client.query('SELECT * FROM usuario WHERE tipo=$1', ["Condomino"]);
             return usuarios.rows;
         });
     }
