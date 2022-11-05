@@ -2,6 +2,7 @@ import {Router} from "express";
 import {condominoControlador} from "../controladores/condomino-controlador";
 import {avisoControlador} from "../controladores/aviso-controlador";
 import {sindicoControlador} from "../controladores/sindico-controlador";
+import { chamadoControlador } from "../controladores/chamado-controlador";
 
 const router = Router();
 
@@ -16,6 +17,13 @@ router.post("/aviso", new avisoControlador().incluir);
 router.delete("/aviso/:id", new avisoControlador().excluir);
 router.patch("/aviso/:id", new avisoControlador().alterar);
 router.get("/avisos", new avisoControlador().consultar);
+
+//Chamado 
+router.post("/chamado", new chamadoControlador().incluir);
+router.delete("/chamado/:id", new chamadoControlador().excluir);
+router.patch("/chamado/:id", new chamadoControlador().alterar);
+router.get("/chamado/:id", new chamadoControlador().consultaId);
+
 
 //Sindico
 router.post("/sindico", new sindicoControlador().incluir);

@@ -5,6 +5,7 @@ const express_1 = require("express");
 const condomino_controlador_1 = require("../controladores/condomino-controlador");
 const aviso_controlador_1 = require("../controladores/aviso-controlador");
 const sindico_controlador_1 = require("../controladores/sindico-controlador");
+const chamado_controlador_1 = require("../controladores/chamado-controlador");
 const router = (0, express_1.Router)();
 exports.router = router;
 // Condomino
@@ -17,6 +18,11 @@ router.post("/aviso", new aviso_controlador_1.avisoControlador().incluir);
 router.delete("/aviso/:id", new aviso_controlador_1.avisoControlador().excluir);
 router.patch("/aviso/:id", new aviso_controlador_1.avisoControlador().alterar);
 router.get("/avisos", new aviso_controlador_1.avisoControlador().consultar);
+//Chamado 
+router.post("/chamado", new chamado_controlador_1.chamadoControlador().incluir);
+router.delete("/chamado/:id", new chamado_controlador_1.chamadoControlador().excluir);
+router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alterar);
+router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
 //Sindico
 router.post("/sindico", new sindico_controlador_1.sindicoControlador().incluir);
 router.delete("/sindico/:id", new sindico_controlador_1.sindicoControlador().excluir);
