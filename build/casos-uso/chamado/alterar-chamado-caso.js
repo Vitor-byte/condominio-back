@@ -16,12 +16,16 @@ class alterarChamadoCaso {
     handle(reqParams, reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const { titulo, descricao, situacao } = reqbody;
+            const { titulo, descricao } = reqbody;
             const chamadoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1', [id]);
             if (chamadoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError('Chamado não existe!');
             }
-            const chamado = yield postgres_1.client.query('UPDATE chamado SET titulo=$2, descricao=$3, situacao=$3 WHERE id_chamado=$1 RETURNING *', [id, titulo, descricao, situacao]);
+            const chamadoSituacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao=$2', [id, "Em andamento"]);
+            if (chamadoSituacao.rows[0].count > 0) {
+                throw new api_erros_1.BadRequestError('Não é possivel alterar o chamado!');
+            }
+            const chamado = yield postgres_1.client.query('UPDATE chamado SET titulo=$2, descricao=$3 WHERE id_chamado=$1 RETURNING *', [id, titulo, descricao]);
             return chamado.rows;
         });
     }

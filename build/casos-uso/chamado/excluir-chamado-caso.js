@@ -20,7 +20,7 @@ class excluirChamadoCaso {
             if (chamadoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError("Chamado não existe!");
             }
-            const chamadoSituacao = yield postgres_1.client.query('SELECT situacao FROM chamado WHERE id_chamado=$1 AND situacao=$2', [id, "Aberto"]);
+            const chamadoSituacao = yield postgres_1.client.query('SELECT situacao FROM chamado WHERE id_chamado=$1 AND situacao=$2 OR situacao=$2', [id, "Finalizado", "Em andamento"]);
             if (chamadoSituacao.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError("Chamado não pode ser excluido!");
             }
