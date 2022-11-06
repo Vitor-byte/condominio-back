@@ -30,7 +30,7 @@ export class chamadoControlador{
         return response.status(201).json(resultado);
     }
     async finalizar(request: Request, response: Response){
-        const resultado = await new  finalizarChamadoCaso().handle(request.params);
+        const resultado = await new  finalizarChamadoCaso().handle(request.params, request.body);
         return response.status(201).json(resultado);
     }
 }
