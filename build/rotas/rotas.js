@@ -6,6 +6,7 @@ const condomino_controlador_1 = require("../controladores/condomino-controlador"
 const aviso_controlador_1 = require("../controladores/aviso-controlador");
 const sindico_controlador_1 = require("../controladores/sindico-controlador");
 const chamado_controlador_1 = require("../controladores/chamado-controlador");
+const login_controlador_1 = require("../controladores/login-controlador");
 const router = (0, express_1.Router)();
 exports.router = router;
 // Condomino
@@ -25,6 +26,8 @@ router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alte
 router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
+//Login 
+router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico
 router.post("/sindico", new sindico_controlador_1.sindicoControlador().incluir);
 router.delete("/sindico/:id", new sindico_controlador_1.sindicoControlador().excluir);

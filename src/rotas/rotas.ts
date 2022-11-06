@@ -3,6 +3,7 @@ import {condominoControlador} from "../controladores/condomino-controlador";
 import {avisoControlador} from "../controladores/aviso-controlador";
 import {sindicoControlador} from "../controladores/sindico-controlador";
 import { chamadoControlador } from "../controladores/chamado-controlador";
+import { loginControlador } from "../controladores/login-controlador";
 
 const router = Router();
 
@@ -25,6 +26,10 @@ router.patch("/chamado/:id", new chamadoControlador().alterar);
 router.patch("/chamado/cancelar/:id", new chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamadoControlador().consultaId);
+
+//Login 
+router.get("/login", new loginControlador().verificaLogin);
+
 
 
 //Sindico
