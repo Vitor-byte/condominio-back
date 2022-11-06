@@ -23,6 +23,7 @@ router.post("/chamado", new chamado_controlador_1.chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamado_controlador_1.chamadoControlador().excluir);
 router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alterar);
 router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
+router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
 //Sindico
 router.post("/sindico", new sindico_controlador_1.sindicoControlador().incluir);

@@ -23,6 +23,7 @@ router.post("/chamado", new chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamadoControlador().excluir);
 router.patch("/chamado/:id", new chamadoControlador().alterar);
 router.patch("/chamado/cancelar/:id", new chamadoControlador().cancelar);
+router.patch("/chamado/finalizar/:id", new chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamadoControlador().consultaId);
 
 
