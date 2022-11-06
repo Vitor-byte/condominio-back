@@ -11,13 +11,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.chamadoControlador = void 0;
 const alterar_chamado_caso_1 = require("../casos-uso/chamado/alterar-chamado-caso");
+const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
 const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
 const excluir_chamado_caso_1 = require("../casos-uso/chamado/excluir-chamado-caso");
 const incluir_chamado_caso_1 = require("../casos-uso/chamado/incluir-chamado-caso");
 class chamadoControlador {
     incluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new incluir_chamado_caso_1.incluirChamadoCaso().handle(request.params, request.body);
+            const resultado = yield new incluir_chamado_caso_1.incluirChamadoCaso().handle(request.body);
             return response.status(200).json(resultado);
         });
     }
@@ -36,6 +37,12 @@ class chamadoControlador {
     consultaId(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultaId_chamado_caso_1.consultaIdChamadoCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    cancelar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new cancelar_chamado_caso_1.cancelarChamadoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }

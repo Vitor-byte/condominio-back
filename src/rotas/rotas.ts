@@ -22,6 +22,7 @@ router.get("/avisos", new avisoControlador().consultar);
 router.post("/chamado", new chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamadoControlador().excluir);
 router.patch("/chamado/:id", new chamadoControlador().alterar);
+router.patch("/chamado/cancelar/:id", new chamadoControlador().cancelar);
 router.get("/chamado/:id", new chamadoControlador().consultaId);
 
 
