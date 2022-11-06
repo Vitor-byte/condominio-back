@@ -1,4 +1,3 @@
-import {Request, Response} from 'express' 
 import { ParamsDictionary } from 'express-serve-static-core';
 import {client} from '../../conexao-banco/postgres'
 import { BadRequestError } from '../../helpers/api-erros';
@@ -16,13 +15,14 @@ export class excluirChamadoCaso{
 
         const chamadoSituacao = await client.query('SELECT situacao FROM chamado WHERE id_chamado=$1 AND situacao=$2 OR situacao=$3',[id, "Finalizado", "Em andamento"]);
 
-        if(chamadoSituacao.rows[0].count > 0){
+        console.log(chamadoSituacao);
+        if(chamadoSituacao.rowCount >  0){
             throw new BadRequestError("Chamado não pode ser excluido!");
 
         }
 
         const chamado = await client.query('DELETE FROM chamado WHERE id_chamado=$1 RETURNING *',[id]);
 
-        return chamado;
+        return chamado.rows;
     }
 }
