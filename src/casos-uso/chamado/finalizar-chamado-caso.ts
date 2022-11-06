@@ -12,6 +12,12 @@ export class finalizarChamadoCaso{
             throw new BadRequestError('Chamado não existe!');
         }
 
+        const chamadoSituacao = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao=$2',[id, "Cancelado"]);
+
+        if(chamadoSituacao.rows[0].count > 0){
+            throw new BadRequestError('Chamado cancelado não pode ser finalizado!');
+        }
+
 
         const chamado = await client.query('UPDATE chamado SET situacao=$2, resposta=$3 WHERE id_chamado=$1 RETURNING *',
         [id, "Finalizado", resposta]);

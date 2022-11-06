@@ -14,7 +14,7 @@ export class alterarChamadoCaso{
         }
 
         const chamadoSituacao = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao=$2',[id, "Em andamento"]);
-
+    
         if(chamadoSituacao.rows[0].count > 0){
             throw new BadRequestError('Não é possivel alterar o chamado!');
         }
