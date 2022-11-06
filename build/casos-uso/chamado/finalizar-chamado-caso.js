@@ -13,18 +13,15 @@ exports.finalizarChamadoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 const api_erros_1 = require("../../helpers/api-erros");
 class finalizarChamadoCaso {
-    handle(reqParams) {
+    handle(reqParams, reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
+            const { resposta } = reqBody;
             const chamadoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1', [id]);
             if (chamadoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError('Chamado não existe!');
             }
-            const chamadoSituacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao=$2', [id, "Finalizado"]);
-            if (chamadoSituacao.rows[0].count > 0) {
-                throw new api_erros_1.BadRequestError('Não é possivel cancelar o chamado!');
-            }
-            const chamado = yield postgres_1.client.query('UPDATE chamado SET situacao=$2 WHERE id_chamado=$1 RETURNING *', [id, "Cancelado"]);
+            const chamado = yield postgres_1.client.query('UPDATE chamado SET situacao=$2, resposta=$3 WHERE id_chamado=$1 RETURNING *', [id, "Finalizado", resposta]);
             return chamado.rows;
         });
     }

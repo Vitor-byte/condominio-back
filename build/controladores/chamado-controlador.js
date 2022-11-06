@@ -49,7 +49,7 @@ class chamadoControlador {
     }
     finalizar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new finalizar_chamado_caso_1.finalizarChamadoCaso().handle(request.params);
+            const resultado = yield new finalizar_chamado_caso_1.finalizarChamadoCaso().handle(request.params, request.body);
             return response.status(201).json(resultado);
         });
     }
