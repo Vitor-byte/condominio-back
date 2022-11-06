@@ -14,6 +14,7 @@ const alterar_chamado_caso_1 = require("../casos-uso/chamado/alterar-chamado-cas
 const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
 const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
 const excluir_chamado_caso_1 = require("../casos-uso/chamado/excluir-chamado-caso");
+const finalizar_chamado_caso_1 = require("../casos-uso/chamado/finalizar-chamado-caso");
 const incluir_chamado_caso_1 = require("../casos-uso/chamado/incluir-chamado-caso");
 class chamadoControlador {
     incluir(request, response) {
@@ -43,6 +44,12 @@ class chamadoControlador {
     cancelar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new cancelar_chamado_caso_1.cancelarChamadoCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    finalizar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new finalizar_chamado_caso_1.finalizarChamadoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }
