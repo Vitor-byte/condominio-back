@@ -15,7 +15,7 @@ const api_erros_1 = require("../../helpers/api-erros");
 class incluirCondominoCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { rg, nome, senha, email, inadimplente } = reqbody;
+            const { rg, nome, senha, email, inadimplente, bloco, unidade } = reqbody;
             const rgExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE rg=$1', [rg]);
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
@@ -24,7 +24,7 @@ class incluirCondominoCaso {
             if (emailExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('Email inválido!');
             }
-            const usuario = yield postgres_1.client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente, "Condomino"]);
+            const usuario = yield postgres_1.client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente, "Condomino", bloco, unidade]);
             return usuario.rows;
         });
     }
