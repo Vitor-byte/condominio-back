@@ -16,7 +16,7 @@ export class incluirCondominoCaso{
             throw new BadRequestError('Email inválido!');
         }
 
-        const usuario = await client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+        const usuario = await client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo, bloco, unidade) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
         [rg, nome, senha, email, "Ativo", inadimplente, "Condomino",bloco, unidade]);
 
         return usuario.rows;

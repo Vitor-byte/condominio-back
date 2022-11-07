@@ -24,7 +24,7 @@ class incluirCondominoCaso {
             if (emailExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('Email inválido!');
             }
-            const usuario = yield postgres_1.client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente, "Condomino", bloco, unidade]);
+            const usuario = yield postgres_1.client.query('INSERT INTO usuario(rg, nome, senha, email, situacao, inadimplente, tipo, bloco, unidade) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [rg, nome, senha, email, "Ativo", inadimplente, "Condomino", bloco, unidade]);
             return usuario.rows;
         });
     }
