@@ -4,6 +4,7 @@ import {avisoControlador} from "../controladores/aviso-controlador";
 import {sindicoControlador} from "../controladores/sindico-controlador";
 import { chamadoControlador } from "../controladores/chamado-controlador";
 import { loginControlador } from "../controladores/login-controlador";
+import { enqueteControlador } from "../controladores/enquete-controlador";
 
 const router = Router();
 
@@ -12,6 +13,8 @@ router.post("/condomino", new condominoControlador().incluir);
 router.delete("/condomino/:id", new condominoControlador().excluir);
 router.patch("/condomino/:id", new condominoControlador().alterar);
 router.get("/condominos", new condominoControlador().consultar);
+router.get("/condomino/:id", new condominoControlador().consultaId);
+
 
 //Aviso
 router.post("/aviso", new avisoControlador().incluir);
@@ -26,6 +29,12 @@ router.patch("/chamado/:id", new chamadoControlador().alterar);
 router.patch("/chamado/cancelar/:id", new chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamadoControlador().consultaId);
+
+// Enquete 
+router.post("/enquete", new enqueteControlador().incluir);
+router.get("/enquetes", new enqueteControlador().consultar);
+router.post("/enquete/votar", new enqueteControlador().votar);
+
 
 //Login 
 router.get("/login", new loginControlador().verificaLogin);
