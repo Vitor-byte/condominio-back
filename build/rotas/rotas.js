@@ -7,6 +7,7 @@ const aviso_controlador_1 = require("../controladores/aviso-controlador");
 const sindico_controlador_1 = require("../controladores/sindico-controlador");
 const chamado_controlador_1 = require("../controladores/chamado-controlador");
 const login_controlador_1 = require("../controladores/login-controlador");
+const enquete_controlador_1 = require("../controladores/enquete-controlador");
 const router = (0, express_1.Router)();
 exports.router = router;
 // Condomino
@@ -14,6 +15,7 @@ router.post("/condomino", new condomino_controlador_1.condominoControlador().inc
 router.delete("/condomino/:id", new condomino_controlador_1.condominoControlador().excluir);
 router.patch("/condomino/:id", new condomino_controlador_1.condominoControlador().alterar);
 router.get("/condominos", new condomino_controlador_1.condominoControlador().consultar);
+router.get("/condomino/:id", new condomino_controlador_1.condominoControlador().consultaId);
 //Aviso
 router.post("/aviso", new aviso_controlador_1.avisoControlador().incluir);
 router.delete("/aviso/:id", new aviso_controlador_1.avisoControlador().excluir);
@@ -26,6 +28,10 @@ router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alte
 router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
+// Enquete 
+router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
+router.get("/enquetes", new enquete_controlador_1.enqueteControlador().consultar);
+router.post("/enquete/votar", new enquete_controlador_1.enqueteControlador().votar);
 //Login 
 router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico
