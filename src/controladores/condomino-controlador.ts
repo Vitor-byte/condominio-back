@@ -3,6 +3,7 @@ import { incluirCondominoCaso} from '../casos-uso/condomino/incluir-condomino-ca
 import { excluirCondominoCaso} from '../casos-uso/condomino/excluir-condomino-caso';
 import { alterarCondominoCaso} from '../casos-uso/condomino/alterar-condomino-caso';
 import { consultarCondominoCaso} from '../casos-uso/condomino/consultar-condomino-caso';
+import { consultaIdCondominoCaso } from '../casos-uso/condomino/consultaId-condomino-caso';
 
 export class condominoControlador{
     async incluir(request: Request, response: Response){
@@ -19,6 +20,10 @@ export class condominoControlador{
     }
     async consultar(request: Request, response: Response){
         const resultado = await new consultarCondominoCaso().handle();
+         return response.status(201).json(resultado);
+    }
+    async consultaId(request: Request, response: Response){
+        const resultado = await new consultaIdCondominoCaso().handle(request.params);
          return response.status(201).json(resultado);
     }
 }
