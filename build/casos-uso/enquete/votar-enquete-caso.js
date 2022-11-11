@@ -11,14 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.votarEnqueteCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
+const api_erros_1 = require("../../helpers/api-erros");
 class votarEnqueteCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id_opcao, id_usuario, id_enquete } = reqbody;
             const voto = yield postgres_1.client.query('SELECT * FROM voto_enquete WHERE id_usuario=$1 AND id_opcao=$2 AND id_enquete=$3', [id_usuario, id_opcao, id_enquete]);
-            //if(voto.rows[0].count > 0){
-            //     throw new BadRequestError("Não é possivel votar de novo");
-            //  }
+            console.log(voto);
+            if (voto.rowCount > 0) {
+                throw new api_erros_1.BadRequestError("Não é possivel votar de novo!");
+            }
             const votoEnquete = yield postgres_1.client.query('INSERT INTO voto_enquete( id_opcao, id_usuario, id_enquete)  VALUES ($1, $2, $3) RETURNING *', [id_opcao, id_usuario, id_enquete]);
             return votoEnquete.rows;
         });
