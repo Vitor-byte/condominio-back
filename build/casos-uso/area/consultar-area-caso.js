@@ -9,22 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.alterarAreaCaso = void 0;
+exports.consultarAreaCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
-const api_erros_1 = require("../../helpers/api-erros");
-class alterarAreaCaso {
-    handle(reqParams, reqbody) {
+class consultarAreaCaso {
+    handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id } = reqParams;
-            const { nome, descricao, preco, imagem, situacao } = reqbody;
-            const areaExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM area_comum WHERE id_area_comum=$1', [id]);
-            ;
-            if (areaExiste.rows[0].count == 0) {
-                throw new api_erros_1.BadRequestError('Area não existe!');
-            }
-            const area = yield postgres_1.client.query('UPDATE area_comum SET nome=$2, descricao=$3, preco=$4, imagem=$5, situacao=$6 WHERE id_area_comum=$1 RETURNING *', [id, nome, descricao, preco, imagem, situacao]);
-            return area.rows;
+            const areas = yield postgres_1.client.query('SELECT * FROM area_comum WHERE situacao=$1', ["Aberta"]);
+            return areas.rows;
         });
     }
 }
-exports.alterarAreaCaso = alterarAreaCaso;
+exports.consultarAreaCaso = consultarAreaCaso;
