@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.avisoControlador = void 0;
 const alterar_aviso_caso_1 = require("../casos-uso/aviso/alterar-aviso-caso");
+const consultaId_aviso_caso_1 = require("../casos-uso/aviso/consultaId-aviso-caso");
 const consultar_aviso_caso_1 = require("../casos-uso/aviso/consultar-aviso-caso");
 const excluir_aviso_caso_1 = require("../casos-uso/aviso/excluir-aviso-caso");
 const incluir_aviso_caso_1 = require("../casos-uso/aviso/incluir-aviso-caso");
@@ -36,6 +37,12 @@ class avisoControlador {
     consultar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultar_aviso_caso_1.consultarAvisoCaso().handle();
+            return response.status(201).json(resultado);
+        });
+    }
+    consultaId(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultaId_aviso_caso_1.consultaIdAvisoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }

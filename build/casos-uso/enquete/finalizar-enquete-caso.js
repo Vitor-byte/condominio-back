@@ -16,8 +16,8 @@ class finalizarEnqueteCaso {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
             const finalizar = yield postgres_1.client.query('UPDATE enquete SET situacao=$2 WHERE id_enquete=$1 RETURNING *', [id, "Fechada"]);
-            const enqueteResultado = yield postgres_1.client.query('SELECT opcoes_enquete.opcao,enquete.titulo, enquete.descricao, opcoes_enquete.opcao, opcoes_enquete.id_opcao FROM opcoes_enquete LEFT JOIN enquete ON opcoes_enquete.id_enquete = enquete.id_enquete WHERE enquete.situacao=$1', ["Aberta"]);
-            return finalizar.rows;
+            const enqueteResultado = yield postgres_1.client.query('SELECT count(id_opcao), id_opcao FROM voto_enquete WHERE id_enquete=$1 group by id_opcao', [id]);
+            return enqueteResultado.rows;
         });
     }
 }

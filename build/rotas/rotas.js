@@ -15,20 +15,21 @@ exports.router = router;
 // Condomino
 router.post("/condomino", new condomino_controlador_1.condominoControlador().incluir);
 router.delete("/condomino/:id", new condomino_controlador_1.condominoControlador().excluir);
-router.put("/condomino/:id", new condomino_controlador_1.condominoControlador().alterar);
+router.patch("/condomino/:id", new condomino_controlador_1.condominoControlador().alterar);
 router.get("/condominos", new condomino_controlador_1.condominoControlador().consultar);
 router.get("/condomino/:id", new condomino_controlador_1.condominoControlador().consultaId);
 //Aviso
 router.post("/aviso", new aviso_controlador_1.avisoControlador().incluir);
 router.delete("/aviso/:id", new aviso_controlador_1.avisoControlador().excluir);
-router.put("/aviso/:id", new aviso_controlador_1.avisoControlador().alterar);
+router.patch("/aviso/:id", new aviso_controlador_1.avisoControlador().alterar);
 router.get("/avisos", new aviso_controlador_1.avisoControlador().consultar);
+router.get("/aviso/:id", new aviso_controlador_1.avisoControlador().consultaId);
 //Chamado 
 router.post("/chamado", new chamado_controlador_1.chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamado_controlador_1.chamadoControlador().excluir);
-router.put("/chamado/:id", new chamado_controlador_1.chamadoControlador().alterar);
-router.put("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
-router.put("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
+router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alterar);
+router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
+router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
 // Enquete 
 router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
