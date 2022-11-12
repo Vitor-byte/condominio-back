@@ -1,6 +1,6 @@
 import {client} from '../../conexao-banco/postgres';
 import { BadRequestError } from '../../helpers/api-erros';
-export class consultarHorariosCaso{
+export class consultarHorarioCaso{
     async handle(reqbody:any){      
         const {data} = reqbody;
 

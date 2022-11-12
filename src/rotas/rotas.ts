@@ -6,8 +6,6 @@ import { chamadoControlador } from "../controladores/chamado-controlador";
 import { loginControlador } from "../controladores/login-controlador";
 import { enqueteControlador } from "../controladores/enquete-controlador";
 import { areaControlador } from "../controladores/area-controlador";
-import { reservaControlador } from "../controladores/reserva-controlador";
-
 const router = Router();
 
 // Condomino
@@ -45,7 +43,8 @@ router.get("/areas", new areaControlador().consultar);
 router.get("/area/:id", new areaControlador().consultaId);
 
 //Reserva
-router.get("/horarios", new reservaControlador().consultarHorarios);
+router.get("/horarios", new areaControlador().consultarHorario);
+router.post("/reservar", new areaControlador().reservar);
 
 
 //Login 
