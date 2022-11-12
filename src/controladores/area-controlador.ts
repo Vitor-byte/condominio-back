@@ -1,5 +1,6 @@
 import { Request, Response } from 'express' 
 import { alterarAreaCaso } from '../casos-uso/area/alterar-area-caso';
+import { consultaIdAreaCaso } from '../casos-uso/area/consultaId-area-caso copy';
 import { consultarAreaCaso } from '../casos-uso/area/consultar-area-caso';
 import { incluirAreaCaso } from '../casos-uso/area/incluir-area-caso';
 
@@ -14,6 +15,10 @@ export class areaControlador{
     }
     async consultar(request: Request, response: Response){
         const resultado = await new consultarAreaCaso().handle();
+        return response.status(201).json(resultado);
+    }
+    async consultaId(request: Request, response: Response){
+        const resultado = await new consultaIdAreaCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
 }

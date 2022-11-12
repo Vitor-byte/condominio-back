@@ -38,6 +38,7 @@ router.post("/enquete/finalizar/:id", new enquete_controlador_1.enqueteControlad
 router.post("/area", new area_controlador_1.areaControlador().incluir);
 router.patch("/area/:id", new area_controlador_1.areaControlador().alterar);
 router.get("/areas", new area_controlador_1.areaControlador().consultar);
+router.get("/area/:id", new area_controlador_1.areaControlador().consultaId);
 //Login 
 router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico

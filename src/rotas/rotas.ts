@@ -41,6 +41,7 @@ router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
 router.post("/area", new areaControlador().incluir);
 router.patch("/area/:id", new areaControlador().alterar);
 router.get("/areas", new areaControlador().consultar);
+router.get("/area/:id", new areaControlador().consultaId);
 
 //Login 
 router.get("/login", new loginControlador().verificaLogin);
