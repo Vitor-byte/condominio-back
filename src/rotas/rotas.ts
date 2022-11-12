@@ -5,6 +5,7 @@ import {sindicoControlador} from "../controladores/sindico-controlador";
 import { chamadoControlador } from "../controladores/chamado-controlador";
 import { loginControlador } from "../controladores/login-controlador";
 import { enqueteControlador } from "../controladores/enquete-controlador";
+import { areaControlador } from "../controladores/area-controlador";
 
 const router = Router();
 
@@ -35,6 +36,9 @@ router.post("/enquete", new enqueteControlador().incluir);
 router.get("/enquetes", new enqueteControlador().consultar);
 router.post("/enquete/votar", new enqueteControlador().votar);
 router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
+
+//Area
+router.post("/area", new areaControlador().incluir);
 
 //Login 
 router.get("/login", new loginControlador().verificaLogin);

@@ -8,6 +8,7 @@ const sindico_controlador_1 = require("../controladores/sindico-controlador");
 const chamado_controlador_1 = require("../controladores/chamado-controlador");
 const login_controlador_1 = require("../controladores/login-controlador");
 const enquete_controlador_1 = require("../controladores/enquete-controlador");
+const area_controlador_1 = require("../controladores/area-controlador");
 const router = (0, express_1.Router)();
 exports.router = router;
 // Condomino
@@ -33,6 +34,8 @@ router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
 router.get("/enquetes", new enquete_controlador_1.enqueteControlador().consultar);
 router.post("/enquete/votar", new enquete_controlador_1.enqueteControlador().votar);
 router.post("/enquete/finalizar/:id", new enquete_controlador_1.enqueteControlador().finalizar);
+//Area
+router.post("/area", new area_controlador_1.areaControlador().incluir);
 //Login 
 router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico
