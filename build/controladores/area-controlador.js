@@ -10,12 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.areaControlador = void 0;
+const alterar_area_caso_1 = require("../casos-uso/area/alterar-area-caso");
 const incluir_area_caso_1 = require("../casos-uso/area/incluir-area-caso");
 class areaControlador {
     incluir(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new incluir_area_caso_1.incluirAreaCaso().handle(request.body);
             return response.status(200).json(resultado);
+        });
+    }
+    alterar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new alterar_area_caso_1.alterarAreaCaso().handle(request.params, request.body);
+            return response.status(201).json(resultado);
         });
     }
 }

@@ -39,7 +39,7 @@ router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
 
 //Area
 router.post("/area", new areaControlador().incluir);
-
+router.patch("/area/:id", new areaControlador().alterar);
 //Login 
 router.get("/login", new loginControlador().verificaLogin);
 
