@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.areaControlador = void 0;
 const alterar_area_caso_1 = require("../casos-uso/area/alterar-area-caso");
-const consultaId_area_caso_copy_1 = require("../casos-uso/area/consultaId-area-caso copy");
+const consultaId_area_caso_1 = require("../casos-uso/area/consultaId-area-caso");
 const consultar_area_caso_1 = require("../casos-uso/area/consultar-area-caso");
 const incluir_area_caso_1 = require("../casos-uso/area/incluir-area-caso");
 class areaControlador {
@@ -35,7 +35,7 @@ class areaControlador {
     }
     consultaId(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new consultaId_area_caso_copy_1.consultaIdAreaCaso().handle(request.params);
+            const resultado = yield new consultaId_area_caso_1.consultaIdAreaCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }
