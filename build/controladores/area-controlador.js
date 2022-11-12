@@ -13,6 +13,7 @@ exports.areaControlador = void 0;
 const alterar_area_caso_1 = require("../casos-uso/area/alterar-area-caso");
 const consultaId_area_caso_1 = require("../casos-uso/area/consultaId-area-caso");
 const consultar_area_caso_1 = require("../casos-uso/area/consultar-area-caso");
+const consultar_horario_caso_1 = require("../casos-uso/area/consultar-horario-caso");
 const incluir_area_caso_1 = require("../casos-uso/area/incluir-area-caso");
 class areaControlador {
     incluir(request, response) {
@@ -37,6 +38,18 @@ class areaControlador {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultaId_area_caso_1.consultaIdAreaCaso().handle(request.params);
             return response.status(201).json(resultado);
+        });
+    }
+    reservar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultar_horario_caso_1.consultarHorarioCaso().handle(request.body);
+            return response.status(200).json(resultado);
+        });
+    }
+    consultarHorario(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultar_horario_caso_1.consultarHorarioCaso().handle(request.body);
+            return response.status(200).json(resultado);
         });
     }
 }

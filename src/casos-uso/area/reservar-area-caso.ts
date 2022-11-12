@@ -1,6 +1,6 @@
 import {client} from '../../conexao-banco/postgres';
 import { BadRequestError } from '../../helpers/api-erros';
-export class incluirReservaCaso{
+export class reservarAreaCaso{
     async handle(reqbody:any){      
         const {id_usuario, id_area_comum, data, horario} = reqbody;
         const dataBanco = data.split(" ")[0].split("/").reverse().join('-');

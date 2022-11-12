@@ -9,7 +9,6 @@ const chamado_controlador_1 = require("../controladores/chamado-controlador");
 const login_controlador_1 = require("../controladores/login-controlador");
 const enquete_controlador_1 = require("../controladores/enquete-controlador");
 const area_controlador_1 = require("../controladores/area-controlador");
-const reserva_controlador_1 = require("../controladores/reserva-controlador");
 const router = (0, express_1.Router)();
 exports.router = router;
 // Condomino
@@ -42,7 +41,8 @@ router.patch("/area/:id", new area_controlador_1.areaControlador().alterar);
 router.get("/areas", new area_controlador_1.areaControlador().consultar);
 router.get("/area/:id", new area_controlador_1.areaControlador().consultaId);
 //Reserva
-router.get("/horarios", new reserva_controlador_1.reservaControlador().consultarHorarios);
+router.get("/horarios", new area_controlador_1.areaControlador().consultarHorario);
+router.post("/reservar", new area_controlador_1.areaControlador().reservar);
 //Login 
 router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico
