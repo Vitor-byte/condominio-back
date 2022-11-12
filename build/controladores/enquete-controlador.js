@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.enqueteControlador = void 0;
 const consultar_enquete_caso_1 = require("../casos-uso/enquete/consultar-enquete-caso");
+const finalizar_enquete_caso_1 = require("../casos-uso/enquete/finalizar-enquete-caso");
 const incluir_enquete_caso_1 = require("../casos-uso/enquete/incluir-enquete-caso");
 const votar_enquete_caso_1 = require("../casos-uso/enquete/votar-enquete-caso");
 class enqueteControlador {
@@ -29,6 +30,12 @@ class enqueteControlador {
     votar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new votar_enquete_caso_1.votarEnqueteCaso().handle(request.body);
+            return response.status(200).json(resultado);
+        });
+    }
+    finalizar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new finalizar_enquete_caso_1.finalizarEnqueteCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }

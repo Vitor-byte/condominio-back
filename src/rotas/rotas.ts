@@ -34,7 +34,7 @@ router.get("/chamado/:id", new chamadoControlador().consultaId);
 router.post("/enquete", new enqueteControlador().incluir);
 router.get("/enquetes", new enqueteControlador().consultar);
 router.post("/enquete/votar", new enqueteControlador().votar);
-
+router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
 
 //Login 
 router.get("/login", new loginControlador().verificaLogin);
