@@ -4,6 +4,7 @@ import { consultaIdAreaCaso } from '../casos-uso/area/consultaId-area-caso';
 import { consultarAreaCaso } from '../casos-uso/area/consultar-area-caso';
 import { consultarHorarioCaso } from '../casos-uso/area/consultar-horario-caso';
 import { incluirAreaCaso } from '../casos-uso/area/incluir-area-caso';
+import { reservarAreaCaso } from '../casos-uso/area/reservar-area-caso';
 
 export class areaControlador{
     async incluir(request: Request, response: Response){
@@ -23,7 +24,7 @@ export class areaControlador{
         return response.status(201).json(resultado);
     }
     async reservar(request: Request, response: Response){
-        const resultado = await new consultarHorarioCaso().handle(request.body);
+        const resultado = await new reservarAreaCaso().handle(request.body);
         return response.status(200).json(resultado);
     }
     async consultarHorario(request: Request, response: Response){
