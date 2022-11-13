@@ -6,7 +6,7 @@ export class consultarHorarioCaso{
 
         const dataBanco = data.split(" ")[0].split("/").reverse().join('-');
 
-        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1',[dataBanco]);
+        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2',[dataBanco,"Reservada"]);
         
         const horariosReservados: string[] = [];
 

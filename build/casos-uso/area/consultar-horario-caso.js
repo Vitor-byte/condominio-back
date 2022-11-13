@@ -16,7 +16,7 @@ class consultarHorarioCaso {
         return __awaiter(this, void 0, void 0, function* () {
             const { data } = reqbody;
             const dataBanco = data.split(" ")[0].split("/").reverse().join('-');
-            const horarios = yield postgres_1.client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1', [dataBanco]);
+            const horarios = yield postgres_1.client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2', [dataBanco, "Reservada"]);
             const horariosReservados = [];
             const horas = [
                 '00:00:00-01:00:00', '01:00:00-02:00:00',

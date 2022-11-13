@@ -11,7 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.areaControlador = void 0;
 const alterar_area_caso_1 = require("../casos-uso/area/alterar-area-caso");
+const cancelar_reserva_caso_1 = require("../casos-uso/area/cancelar-reserva-caso");
 const consultaId_area_caso_1 = require("../casos-uso/area/consultaId-area-caso");
+const consultaId_reserva_caso_1 = require("../casos-uso/area/consultaId-reserva-caso");
 const consultar_area_caso_1 = require("../casos-uso/area/consultar-area-caso");
 const consultar_horario_caso_1 = require("../casos-uso/area/consultar-horario-caso");
 const incluir_area_caso_1 = require("../casos-uso/area/incluir-area-caso");
@@ -50,6 +52,18 @@ class areaControlador {
     consultarHorario(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultar_horario_caso_1.consultarHorarioCaso().handle(request.body);
+            return response.status(200).json(resultado);
+        });
+    }
+    consultaIdReserva(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultaId_reserva_caso_1.consultaIdReservaCaso().handle(request.params);
+            return response.status(200).json(resultado);
+        });
+    }
+    cancelarReserva(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new cancelar_reserva_caso_1.cancelarReservaCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }
