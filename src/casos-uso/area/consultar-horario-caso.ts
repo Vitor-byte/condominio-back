@@ -4,13 +4,13 @@ export class consultarHorarioCaso{
     async handle(reqbody:any){      
         const {data} = reqbody;
 
-        const dataBanco = data.split(" ")[0].split("/").reverse().join('-');
+        const dataFormatada = data.split(" ")[0].split("/").reverse().join('-');
 
-        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2',[dataBanco,"Reservada"]);
+        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2',[dataFormatada,"Reservada"]);
         
         const horariosReservados: string[] = [];
 
-        const horas: string[] = 
+        const horariosDisponiveis: string[] = 
         [
             '00:00:00-01:00:00', '01:00:00-02:00:00',
             '02:00:00-03:00:00', '03:00:00-04:00:00',
@@ -26,20 +26,20 @@ export class consultarHorarioCaso{
             '22:00:00-23:00:00', '23:00:00-24:00:00'
           ];
 
-        horarios.rows.map(function(element: { horario_inicial: string; horario_final: string;}, i:number){
-            horariosReservados[i] = element.horario_inicial+"-"+element.horario_final;
+        horarios.rows.map(function(horario: { horario_inicial: string; horario_final: string;}, i:number){
+            horariosReservados[i] = horario.horario_inicial+"-"+horario.horario_final;
         })
 
         for(let i =0;i <= horariosReservados.length;i++){
-            for(let j =0;j <=horas.length;j++){
-            if(horas[j] ===horariosReservados[i]){
-                horas.splice(j,1);
+            for(let j =0;j <=horariosDisponiveis.length;j++){
+            if(horariosDisponiveis[j] === horariosReservados[i]){
+                horariosDisponiveis.splice(j,1);
             }
   
          }  
         }
 
-        return horas;
+        return horariosDisponiveis;
     }
 }
 

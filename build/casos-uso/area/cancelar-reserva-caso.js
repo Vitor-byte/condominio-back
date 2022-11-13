@@ -15,8 +15,8 @@ class cancelarReservaCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const area = yield postgres_1.client.query('UPDATE reserva_area_comum SET situacao=$2 WHERE id_reserva=$1 RETURNING *', [id, "Cancelada"]);
-            return area.rows;
+            const reserva = yield postgres_1.client.query('UPDATE reserva_area_comum SET situacao=$2 WHERE id_reserva=$1 RETURNING *', [id, "Cancelada"]);
+            return reserva.rows;
         });
     }
 }

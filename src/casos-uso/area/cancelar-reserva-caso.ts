@@ -6,10 +6,10 @@ export class cancelarReservaCaso{
     async handle(reqParams: any){
         const {id} = reqParams;
 
-        const area = await client.query('UPDATE reserva_area_comum SET situacao=$2 WHERE id_reserva=$1 RETURNING *',
+        const reserva = await client.query('UPDATE reserva_area_comum SET situacao=$2 WHERE id_reserva=$1 RETURNING *',
         [id, "Cancelada"]);
 
-        return area.rows;
+        return reserva.rows;
     }
 }
 

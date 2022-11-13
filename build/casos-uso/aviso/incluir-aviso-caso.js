@@ -15,7 +15,7 @@ class incluirAvisoCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { titulo, descricao } = reqbody;
-            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao) VALUES ($1, $2) RETURNING *', [titulo, descricao]);
+            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao, data_emissao) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [titulo, descricao]);
             return aviso.rows;
         });
     }

@@ -15,7 +15,7 @@ class incluirChamadoCaso {
     handle(reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { titulo, descricao, id_usuario } = reqBody;
-            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao, id_usuario) VALUES ($1, $2, $3, $4) RETURNING *', [titulo, descricao, "Aberto", id_usuario]);
+            const chamado = yield postgres_1.client.query('INSERT INTO chamado(titulo, descricao, situacao, id_usuario, data_emissao) VALUES ($1, $2, $3, $4, CURRENT_DATE) RETURNING *', [titulo, descricao, "Aberto", id_usuario]);
             return chamado.rows;
         });
     }
