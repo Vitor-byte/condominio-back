@@ -26,10 +26,11 @@ router.get("/aviso/:id", new aviso_controlador_1.avisoControlador().consultaId);
 //Chamado 
 router.post("/chamado", new chamado_controlador_1.chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamado_controlador_1.chamadoControlador().excluir);
-router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().alterar);
 router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
+router.get("/chamados", new chamado_controlador_1.chamadoControlador().consultar);
+router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().atender);
 // Enquete 
 router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
 router.get("/enquetes", new enquete_controlador_1.enqueteControlador().consultar);

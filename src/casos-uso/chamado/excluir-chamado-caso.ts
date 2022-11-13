@@ -13,7 +13,7 @@ export class excluirChamadoCaso{
             throw new BadRequestError("Chamado não existe!");
         }
 
-        const chamadoSituacao = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao=$2 OR situacao=$3',[id,"Finalizado","Cancelado"]);
+        const chamadoSituacao = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao!=$2',[id,"Aberto"]);
 
         console.log(chamadoSituacao);
         if(chamadoSituacao.rows[0].count > 0){

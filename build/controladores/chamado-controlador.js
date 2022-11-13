@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.chamadoControlador = void 0;
-const alterar_chamado_caso_1 = require("../casos-uso/chamado/alterar-chamado-caso");
+const atender_chamado_caso_1 = require("../casos-uso/chamado/atender-chamado-caso");
 const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
 const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
+const consultar_chamado_caso_1 = require("../casos-uso/chamado/consultar-chamado-caso");
 const excluir_chamado_caso_1 = require("../casos-uso/chamado/excluir-chamado-caso");
 const finalizar_chamado_caso_1 = require("../casos-uso/chamado/finalizar-chamado-caso");
 const incluir_chamado_caso_1 = require("../casos-uso/chamado/incluir-chamado-caso");
@@ -29,15 +30,15 @@ class chamadoControlador {
             return response.status(201).json(resultado);
         });
     }
-    alterar(request, response) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new alterar_chamado_caso_1.alterarChamadoCaso().handle(request.params, request.body);
-            return response.status(201).json(resultado);
-        });
-    }
     consultaId(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultaId_chamado_caso_1.consultaIdChamadoCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    consultar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultar_chamado_caso_1.consultarChamadoCaso().handle();
             return response.status(201).json(resultado);
         });
     }
@@ -50,6 +51,12 @@ class chamadoControlador {
     finalizar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new finalizar_chamado_caso_1.finalizarChamadoCaso().handle(request.params, request.body);
+            return response.status(201).json(resultado);
+        });
+    }
+    atender(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new atender_chamado_caso_1.atenderChamadoCaso().handle(request.params, request.body);
             return response.status(201).json(resultado);
         });
     }
