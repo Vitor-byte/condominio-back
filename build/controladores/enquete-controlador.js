@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.enqueteControlador = void 0;
+const cancelar_enquete_caso_1 = require("../casos-uso/enquete/cancelar-enquete-caso");
 const consultar_enquete_caso_1 = require("../casos-uso/enquete/consultar-enquete-caso");
 const finalizar_enquete_caso_1 = require("../casos-uso/enquete/finalizar-enquete-caso");
 const incluir_enquete_caso_1 = require("../casos-uso/enquete/incluir-enquete-caso");
@@ -30,6 +31,12 @@ class enqueteControlador {
     votar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new votar_enquete_caso_1.votarEnqueteCaso().handle(request.body);
+            return response.status(200).json(resultado);
+        });
+    }
+    cancelar(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new cancelar_enquete_caso_1.cancelarEnqueteCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }

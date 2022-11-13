@@ -1,4 +1,5 @@
 import { Request, Response } from 'express' 
+import { cancelarEnqueteCaso } from '../casos-uso/enquete/cancelar-enquete-caso';
 import { consultarEnqueteCaso } from '../casos-uso/enquete/consultar-enquete-caso';
 import { finalizarEnqueteCaso } from '../casos-uso/enquete/finalizar-enquete-caso';
 import { incluirEnqueteCaso } from '../casos-uso/enquete/incluir-enquete-caso';
@@ -19,6 +20,12 @@ export class enqueteControlador{
     }
     async votar(request: Request, response: Response){
         const resultado = await new votarEnqueteCaso().handle(request.body);
+        return response.status(200).json(resultado);
+       
+
+    }
+    async cancelar(request: Request, response: Response){
+        const resultado = await new cancelarEnqueteCaso().handle(request.params);
         return response.status(200).json(resultado);
        
 
