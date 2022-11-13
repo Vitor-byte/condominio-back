@@ -17,7 +17,7 @@ export class excluirChamadoCaso{
 
         console.log(chamadoSituacao);
         if(chamadoSituacao.rows[0].count > 0){
-            throw new BadRequestError("Chamado cancelado ou finalizado não pode ser excluido!");
+            throw new BadRequestError("Chamado não esta mais em aberto não pode ser excluido!");
 
         }
 

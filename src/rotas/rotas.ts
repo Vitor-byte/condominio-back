@@ -15,13 +15,13 @@ router.patch("/condomino/:id", new condominoControlador().alterar);
 router.get("/condominos", new condominoControlador().consultar);
 router.get("/condomino/:id", new condominoControlador().consultaId);
 
-
 //Aviso
 router.post("/aviso", new avisoControlador().incluir);
 router.delete("/aviso/:id", new avisoControlador().excluir);
 router.patch("/aviso/:id", new avisoControlador().alterar);
 router.get("/avisos", new avisoControlador().consultar);
 router.get("/aviso/:id", new avisoControlador().consultaId);
+
 //Chamado 
 router.post("/chamado", new chamadoControlador().incluir);
 router.delete("/chamado/:id", new chamadoControlador().excluir);
@@ -38,6 +38,7 @@ router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
 router.patch("/enquete/cancelar/:id", new enqueteControlador().cancelar);
 //Area
 router.post("/area", new areaControlador().incluir);
+router.delete("/area/:id", new areaControlador().excluir);
 router.patch("/area/:id", new areaControlador().alterar);
 router.get("/areas", new areaControlador().consultar);
 router.get("/area/:id", new areaControlador().consultaId);
