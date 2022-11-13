@@ -11,8 +11,6 @@ export class chamadoControlador{
     async incluir(request: Request, response: Response){
         const resultado = await new incluirChamadoCaso().handle(request.body);
         return response.status(200).json(resultado);
-       
-
     }
     async excluir(request: Request, response: Response){
         const resultado = await new excluirChamadoCaso().handle(request.params);

@@ -14,8 +14,8 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class incluirAreaCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { nome, descricao, preco, imagem } = reqbody;
-            const area = yield postgres_1.client.query('INSERT INTO area_comum( nome, descricao, preco, situacao, imagem ) VALUES ($1, $2, $3, $4, $5) RETURNING *', [nome, descricao, preco, "Aberta", imagem]);
+            const { nome, descricao, preco } = reqbody;
+            const area = yield postgres_1.client.query('INSERT INTO area_comum( nome, descricao, preco, situacao) VALUES ($1, $2, $3, $4) RETURNING *', [nome, descricao, preco, "Aberta"]);
             return area.rows;
         });
     }

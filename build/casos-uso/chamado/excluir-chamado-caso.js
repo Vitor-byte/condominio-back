@@ -23,7 +23,7 @@ class excluirChamadoCaso {
             const chamadoSituacao = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1 AND situacao!=$2', [id, "Aberto"]);
             console.log(chamadoSituacao);
             if (chamadoSituacao.rows[0].count > 0) {
-                throw new api_erros_1.BadRequestError("Chamado cancelado ou finalizado não pode ser excluido!");
+                throw new api_erros_1.BadRequestError("Chamado não esta mais em aberto não pode ser excluido!");
             }
             const chamado = yield postgres_1.client.query('DELETE FROM chamado WHERE id_chamado=$1 RETURNING *', [id]);
             return chamado.rows;

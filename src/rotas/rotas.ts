@@ -38,7 +38,6 @@ router.post("/enquete/finalizar/:id", new enqueteControlador().finalizar);
 router.patch("/enquete/cancelar/:id", new enqueteControlador().cancelar);
 //Area
 router.post("/area", new areaControlador().incluir);
-router.delete("/area/:id", new areaControlador().excluir);
 router.patch("/area/:id", new areaControlador().alterar);
 router.get("/areas", new areaControlador().consultar);
 router.get("/area/:id", new areaControlador().consultaId);
