@@ -1,6 +1,7 @@
 import { Request, Response } from 'express' 
 import { atenderChamadoCaso } from '../casos-uso/chamado/atender-chamado-caso';
 import { cancelarChamadoCaso } from '../casos-uso/chamado/cancelar-chamado-caso';
+import { consultaUsuarioChamadoCaso } from '../casos-uso/chamado/consulta-chamado-usuario-caso';
 import { consultaIdChamadoCaso } from '../casos-uso/chamado/consultaId-chamado-caso';
 import { consultarChamadoCaso } from '../casos-uso/chamado/consultar-chamado-caso';
 import { excluirChamadoCaso } from '../casos-uso/chamado/excluir-chamado-caso';
@@ -18,6 +19,10 @@ export class chamadoControlador{
     }
     async consultaId(request: Request, response: Response){
         const resultado = await new consultaIdChamadoCaso().handle(request.params);
+        return response.status(201).json(resultado);
+    }
+    async consultaUsuario(request: Request, response: Response){
+        const resultado = await new consultaUsuarioChamadoCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
     async consultar(request: Request, response: Response){
