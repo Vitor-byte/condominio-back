@@ -9,19 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.consultaIdCondominoCaso = void 0;
+exports.consultaUsuarioChamadoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
-const api_erros_1 = require("../../helpers/api-erros");
-class consultaIdCondominoCaso {
+class consultaUsuarioChamadoCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const usuario = yield postgres_1.client.query('SELECT * FROM usuario WHERE id_usuario=$1', [id]);
-            if (usuario.rowCount == 0) {
-                throw new api_erros_1.BadRequestError("Usuario não existe!");
-            }
-            return usuario.rows;
+            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE id_usuario=$1', [id]);
+            return chamados.rows;
         });
     }
 }
-exports.consultaIdCondominoCaso = consultaIdCondominoCaso;
+exports.consultaUsuarioChamadoCaso = consultaUsuarioChamadoCaso;

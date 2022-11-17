@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.chamadoControlador = void 0;
 const atender_chamado_caso_1 = require("../casos-uso/chamado/atender-chamado-caso");
 const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
+const consulta_chamado_usuario_caso_1 = require("../casos-uso/chamado/consulta-chamado-usuario-caso");
 const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
 const consultar_chamado_caso_1 = require("../casos-uso/chamado/consultar-chamado-caso");
 const excluir_chamado_caso_1 = require("../casos-uso/chamado/excluir-chamado-caso");
@@ -33,6 +34,12 @@ class chamadoControlador {
     consultaId(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultaId_chamado_caso_1.consultaIdChamadoCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    consultaUsuario(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consulta_chamado_usuario_caso_1.consultaUsuarioChamadoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }
