@@ -5,7 +5,7 @@ import { BadRequestError } from '../../helpers/api-erros';
 export class finalizarChamadoCaso{
     async handle(reqParams: any, reqBody: any){
         const {id} = reqParams;
-        const {resposta} = reqBody;
+        const {resolucao} = reqBody;
         const chamadoExiste = await client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1',[id]);
 
         if(chamadoExiste.rows[0].count == 0){
@@ -19,8 +19,8 @@ export class finalizarChamadoCaso{
         }
 
 
-        const chamado = await client.query('UPDATE chamado SET situacao=$2, resposta=$3 WHERE id_chamado=$1 RETURNING *',
-        [id, "Finalizado", resposta]);
+        const chamado = await client.query('UPDATE chamado SET situacao=$2, resolucao=$3 WHERE id_chamado=$1 RETURNING *',
+        [id, "Finalizado", resolucao]);
 
         return chamado.rows;
     }

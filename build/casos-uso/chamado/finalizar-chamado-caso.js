@@ -16,7 +16,7 @@ class finalizarChamadoCaso {
     handle(reqParams, reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const { resposta } = reqBody;
+            const { resolucao } = reqBody;
             const chamadoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1', [id]);
             if (chamadoExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError('Chamado não existe!');
@@ -25,7 +25,7 @@ class finalizarChamadoCaso {
             if (chamadoSituacao.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('Chamado cancelado não pode ser finalizado!');
             }
-            const chamado = yield postgres_1.client.query('UPDATE chamado SET situacao=$2, resposta=$3 WHERE id_chamado=$1 RETURNING *', [id, "Finalizado", resposta]);
+            const chamado = yield postgres_1.client.query('UPDATE chamado SET situacao=$2, resolucao=$3 WHERE id_chamado=$1 RETURNING *', [id, "Finalizado", resolucao]);
             return chamado.rows;
         });
     }
