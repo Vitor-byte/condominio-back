@@ -10,5 +10,5 @@ app.use(cors())
 app.use(express.json());
 app.use(router);
 app.use(errorMiddleware);
-app.listen(process.env.PORT || 6000, () => console.log("Server rodando"));
+app.listen(process.env.PORT || 7000, () => console.log("Server rodando"));
 console.log(process.env.DATABASE_URL);
