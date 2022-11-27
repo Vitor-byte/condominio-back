@@ -14,7 +14,7 @@ const atender_chamado_caso_1 = require("../casos-uso/chamado/atender-chamado-cas
 const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
 const consulta_chamado_usuario_caso_1 = require("../casos-uso/chamado/consulta-chamado-usuario-caso");
 const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
-const consultar_chamado_caso_1 = require("../casos-uso/chamado/consultar-chamado-caso");
+const consultar_chamado_aberto_caso_1 = require("../casos-uso/chamado/consultar-chamado-aberto-caso");
 const excluir_chamado_caso_1 = require("../casos-uso/chamado/excluir-chamado-caso");
 const finalizar_chamado_caso_1 = require("../casos-uso/chamado/finalizar-chamado-caso");
 const incluir_chamado_caso_1 = require("../casos-uso/chamado/incluir-chamado-caso");
@@ -43,9 +43,9 @@ class chamadoControlador {
             return response.status(201).json(resultado);
         });
     }
-    consultar(request, response) {
+    consultarAbertos(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new consultar_chamado_caso_1.consultarChamadoCaso().handle();
+            const resultado = yield new consultar_chamado_aberto_caso_1.consultarChamadoAbertoCaso().handle();
             return response.status(201).json(resultado);
         });
     }
