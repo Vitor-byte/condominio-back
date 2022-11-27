@@ -29,6 +29,9 @@ router.patch("/chamado/cancelar/:id", new chamadoControlador().cancelar);
 router.patch("/chamado/finalizar/:id", new chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamadoControlador().consultaId);
 router.get("/chamados/abertos", new chamadoControlador().consultarAbertos);
+router.get("/chamados/andamento", new chamadoControlador().consultarEmAndamento);
+router.get("/chamados/finalizados", new chamadoControlador().consultarFinalizados);
+
 router.get("/chamado:id", new chamadoControlador().consultaUsuario);
 
 router.patch("/chamado/:id", new chamadoControlador().atender);

@@ -4,6 +4,8 @@ import { cancelarChamadoCaso } from '../casos-uso/chamado/cancelar-chamado-caso'
 import { consultaUsuarioChamadoCaso } from '../casos-uso/chamado/consulta-chamado-usuario-caso';
 import { consultaIdChamadoCaso } from '../casos-uso/chamado/consultaId-chamado-caso';
 import { consultarChamadoAbertoCaso } from '../casos-uso/chamado/consultar-chamado-aberto-caso';
+import { consultarChamadoEmAndamentoCaso } from '../casos-uso/chamado/consultar-chamado-andamento-caso';
+import { consultarChamadoFinalizadosCaso } from '../casos-uso/chamado/consultar-chamado-andamento-caso copy';
 import { excluirChamadoCaso } from '../casos-uso/chamado/excluir-chamado-caso';
 import { finalizarChamadoCaso } from '../casos-uso/chamado/finalizar-chamado-caso';
 import { incluirChamadoCaso } from '../casos-uso/chamado/incluir-chamado-caso';
@@ -27,6 +29,14 @@ export class chamadoControlador{
     }
     async consultarAbertos(request: Request, response: Response){
         const resultado = await new consultarChamadoAbertoCaso().handle();
+        return response.status(201).json(resultado);
+    }
+    async consultarEmAndamento(request: Request, response: Response){
+        const resultado = await new consultarChamadoEmAndamentoCaso().handle();
+        return response.status(201).json(resultado);
+    }
+    async consultarFinalizados(request: Request, response: Response){
+        const resultado = await new consultarChamadoFinalizadosCaso().handle();
         return response.status(201).json(resultado);
     }
     async cancelar(request: Request, response: Response){
