@@ -3,7 +3,7 @@ import { atenderChamadoCaso } from '../casos-uso/chamado/atender-chamado-caso';
 import { cancelarChamadoCaso } from '../casos-uso/chamado/cancelar-chamado-caso';
 import { consultaUsuarioChamadoCaso } from '../casos-uso/chamado/consulta-chamado-usuario-caso';
 import { consultaIdChamadoCaso } from '../casos-uso/chamado/consultaId-chamado-caso';
-import { consultarChamadoAbertoCaso } from '../casos-uso/chamado/consultar-chamado-caso';
+import { consultarChamadoAbertoCaso } from '../casos-uso/chamado/consultar-chamado-aberto.caso';
 import { excluirChamadoCaso } from '../casos-uso/chamado/excluir-chamado-caso';
 import { finalizarChamadoCaso } from '../casos-uso/chamado/finalizar-chamado-caso';
 import { incluirChamadoCaso } from '../casos-uso/chamado/incluir-chamado-caso';
