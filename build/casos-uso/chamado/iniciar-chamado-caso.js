@@ -9,15 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.consultaIdChamadoCaso = void 0;
+exports.iniciarChamadoCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
-class consultaIdChamadoCaso {
-    handle(reqParams) {
+class iniciarChamadoCaso {
+    handle(reqParams, reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const chamados = yield postgres_1.client.query('SELECT  * FROM resposta WHERE id_chamado=$1', [id]);
-            return chamados.rows;
+            const { situacao, resposta } = reqBody;
+            const chamadoExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM chamado WHERE id_chamado=$1', [id]);
+            const atualizaChamado = yield postgres_1.client.query('UPDATE chamado SET situacao=$2 WHERE id_chamado=$1 RETURNING *', [id, situacao]);
+            const incluiChamado = yield postgres_1.client.query('INSERT INTO resposta(id_chamado, resposta) VALUES ($1, $2) RETURNING *', [id, resposta]);
+            return atualizaChamado.rows;
         });
     }
 }
-exports.consultaIdChamadoCaso = consultaIdChamadoCaso;
+exports.iniciarChamadoCaso = iniciarChamadoCaso;
