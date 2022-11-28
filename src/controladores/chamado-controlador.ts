@@ -5,7 +5,7 @@ import { consultaUsuarioChamadoCaso } from '../casos-uso/chamado/consulta-chamad
 import { consultaIdChamadoCaso } from '../casos-uso/chamado/consultaId-chamado-caso';
 import { consultarChamadoAbertoCaso } from '../casos-uso/chamado/consultar-chamado-aberto-caso';
 import { consultarChamadoEmAndamentoCaso } from '../casos-uso/chamado/consultar-chamado-andamento-caso';
-import { consultarChamadoFinalizadosCaso } from '../casos-uso/chamado/consultar-chamado-andamento-caso copy';
+import { consultarChamadoFinalizadosCaso } from '../casos-uso/chamado/consultar-chamado-finalizado-caso';
 import { excluirChamadoCaso } from '../casos-uso/chamado/excluir-chamado-caso';
 import { finalizarChamadoCaso } from '../casos-uso/chamado/finalizar-chamado-caso';
 import { incluirChamadoCaso } from '../casos-uso/chamado/incluir-chamado-caso';

@@ -30,6 +30,8 @@ router.patch("/chamado/cancelar/:id", new chamado_controlador_1.chamadoControlad
 router.patch("/chamado/finalizar/:id", new chamado_controlador_1.chamadoControlador().finalizar);
 router.get("/chamado/:id", new chamado_controlador_1.chamadoControlador().consultaId);
 router.get("/chamados/abertos", new chamado_controlador_1.chamadoControlador().consultarAbertos);
+router.get("/chamados/andamento", new chamado_controlador_1.chamadoControlador().consultarEmAndamento);
+router.get("/chamados/finalizados", new chamado_controlador_1.chamadoControlador().consultarFinalizados);
 router.get("/chamado:id", new chamado_controlador_1.chamadoControlador().consultaUsuario);
 router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().atender);
 // Enquete 
