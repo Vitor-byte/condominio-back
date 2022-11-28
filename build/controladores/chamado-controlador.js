@@ -13,7 +13,8 @@ exports.chamadoControlador = void 0;
 const atender_chamado_caso_1 = require("../casos-uso/chamado/atender-chamado-caso");
 const cancelar_chamado_caso_1 = require("../casos-uso/chamado/cancelar-chamado-caso");
 const consulta_chamado_usuario_caso_1 = require("../casos-uso/chamado/consulta-chamado-usuario-caso");
-const consultaId_chamado_caso_1 = require("../casos-uso/chamado/consultaId-chamado-caso");
+const consulta_id_chamado_caso_1 = require("../casos-uso/chamado/consulta-id-chamado-caso");
+const consulta_resposta_chamado_caso_1 = require("../casos-uso/chamado/consulta-resposta-chamado-caso");
 const consultar_chamado_aberto_caso_1 = require("../casos-uso/chamado/consultar-chamado-aberto-caso");
 const consultar_chamado_andamento_caso_1 = require("../casos-uso/chamado/consultar-chamado-andamento-caso");
 const consultar_chamado_finalizado_caso_1 = require("../casos-uso/chamado/consultar-chamado-finalizado-caso");
@@ -33,15 +34,21 @@ class chamadoControlador {
             return response.status(201).json(resultado);
         });
     }
-    consultaId(request, response) {
+    consultaResposta(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new consultaId_chamado_caso_1.consultaIdChamadoCaso().handle(request.params);
+            const resultado = yield new consulta_resposta_chamado_caso_1.consultaRespostaChamadoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }
     consultaUsuario(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consulta_chamado_usuario_caso_1.consultaUsuarioChamadoCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    consultaIdChamado(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consulta_id_chamado_caso_1.consultaIdChamadoCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }

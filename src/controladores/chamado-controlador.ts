@@ -2,7 +2,8 @@ import { Request, Response } from 'express'
 import { atenderChamadoCaso } from '../casos-uso/chamado/atender-chamado-caso';
 import { cancelarChamadoCaso } from '../casos-uso/chamado/cancelar-chamado-caso';
 import { consultaUsuarioChamadoCaso } from '../casos-uso/chamado/consulta-chamado-usuario-caso';
-import { consultaIdChamadoCaso } from '../casos-uso/chamado/consultaId-chamado-caso';
+import { consultaIdChamadoCaso } from '../casos-uso/chamado/consulta-id-chamado-caso';
+import { consultaRespostaChamadoCaso } from '../casos-uso/chamado/consulta-resposta-chamado-caso';
 import { consultarChamadoAbertoCaso } from '../casos-uso/chamado/consultar-chamado-aberto-caso';
 import { consultarChamadoEmAndamentoCaso } from '../casos-uso/chamado/consultar-chamado-andamento-caso';
 import { consultarChamadoFinalizadosCaso } from '../casos-uso/chamado/consultar-chamado-finalizado-caso';
@@ -19,12 +20,16 @@ export class chamadoControlador{
         const resultado = await new excluirChamadoCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
-    async consultaId(request: Request, response: Response){
-        const resultado = await new consultaIdChamadoCaso().handle(request.params);
+    async consultaResposta(request: Request, response: Response){
+        const resultado = await new consultaRespostaChamadoCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
     async consultaUsuario(request: Request, response: Response){
         const resultado = await new consultaUsuarioChamadoCaso().handle(request.params);
+        return response.status(201).json(resultado);
+    }
+    async consultaIdChamado(request: Request, response: Response){
+        const resultado = await new consultaIdChamadoCaso().handle(request.params);
         return response.status(201).json(resultado);
     }
     async consultarAbertos(request: Request, response: Response){
