@@ -12,11 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.consultarHorarioCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
 class consultarHorarioCaso {
-    handle(reqbody) {
+    handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { data } = reqbody;
-            const dataFormatada = data.split(" ")[0].split("/").reverse().join('-');
-            const horarios = yield postgres_1.client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2', [dataFormatada, "Reservada"]);
+            const { data } = reqParams;
+            const horarios = yield postgres_1.client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2', [data, "Reservada"]);
             const horariosReservados = [];
             const horariosDisponiveis = [
                 '00:00:00-01:00:00', '01:00:00-02:00:00',

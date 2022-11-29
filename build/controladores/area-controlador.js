@@ -51,7 +51,7 @@ class areaControlador {
     }
     consultarHorario(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
-            const resultado = yield new consultar_horario_caso_1.consultarHorarioCaso().handle(request.body);
+            const resultado = yield new consultar_horario_caso_1.consultarHorarioCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }
