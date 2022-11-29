@@ -30,7 +30,7 @@ export class areaControlador{
         return response.status(200).json(resultado);
     }
     async consultarHorario(request: Request, response: Response){
-        const resultado = await new consultarHorarioCaso().handle(request.body);
+        const resultado = await new consultarHorarioCaso().handle(request.params);
         return response.status(200).json(resultado);
     }
     async consultaIdReserva(request: Request, response: Response){
