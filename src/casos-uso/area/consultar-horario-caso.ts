@@ -4,9 +4,9 @@ export class consultarHorarioCaso{
     async handle(reqbody:any){      
         const {data} = reqbody;
 
-        const dataFormatada = data.split(" ")[0].split("/").reverse().join('-');
 
-        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2',[dataFormatada,"Reservada"]);
+
+        const horarios = await client.query('SELECT horario_inicial, horario_final FROM reserva_area_comum WHERE data=$1 AND situacao=$2',[data,"Reservada"]);
         
         const horariosReservados: string[] = [];
 
