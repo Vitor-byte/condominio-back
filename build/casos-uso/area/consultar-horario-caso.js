@@ -41,7 +41,7 @@ class consultarHorarioCaso {
                     }
                 }
             }
-            return { "horarios": '23:00:00-24:00:00' };
+            return horariosDisponiveis;
         });
     }
 }
