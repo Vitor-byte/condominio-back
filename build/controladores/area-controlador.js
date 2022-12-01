@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.areaControlador = void 0;
 const alterar_area_caso_1 = require("../casos-uso/area/alterar-area-caso");
 const cancelar_reserva_caso_1 = require("../casos-uso/area/cancelar-reserva-caso");
+const consulta_id_reserva_caso_1 = require("../casos-uso/area/consulta-id-reserva-caso");
 const consultaId_area_caso_1 = require("../casos-uso/area/consultaId-area-caso");
 const consultaId_reserva_caso_1 = require("../casos-uso/area/consultaId-reserva-caso");
 const consultar_area_caso_1 = require("../casos-uso/area/consultar-area-caso");
@@ -40,6 +41,12 @@ class areaControlador {
     consultaId(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultaId_area_caso_1.consultaIdAreaCaso().handle(request.params);
+            return response.status(201).json(resultado);
+        });
+    }
+    consultaReservaId(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consulta_id_reserva_caso_1.consultaReservaIdAreaCaso().handle(request.params);
             return response.status(201).json(resultado);
         });
     }

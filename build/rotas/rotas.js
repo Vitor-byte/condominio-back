@@ -51,6 +51,7 @@ router.get("/area/:id", new area_controlador_1.areaControlador().consultaId);
 router.get("/horarios/:data", new area_controlador_1.areaControlador().consultarHorario);
 router.post("/reservar", new area_controlador_1.areaControlador().reservar);
 router.get("/reservas/:id", new area_controlador_1.areaControlador().consultaIdReserva);
+router.get("/reserva/:id", new area_controlador_1.areaControlador().consultaReservaId);
 router.patch("/cancelar/reserva/:id", new area_controlador_1.areaControlador().cancelarReserva);
 //Login 
 router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
