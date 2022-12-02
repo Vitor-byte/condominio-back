@@ -16,7 +16,7 @@ class incluirAvisoCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { titulo, descricao } = reqbody;
-            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao, data_emissao) VALUES ($1, $2, CURRENT_DATE) RETURNING *', [titulo, descricao]);
+            const aviso = yield postgres_1.client.query('INSERT INTO aviso(titulo, descricao, data_emissao) VALUES ($1, $2, cast(now() as date)) RETURNING *', [titulo, descricao]);
             const enivar = yield new nodemailer_1.Nodemailer('vitorgabrielcl@outlook.com', 'vitor.cost77@gmail.com', 'Aviso', 'Aviso teste ').enviarEmail;
             return aviso.rows;
         });

@@ -4,7 +4,7 @@ export class incluirAvisoCaso{
     async handle(reqbody:any){  
         const {titulo, descricao} = reqbody;
            
-        const aviso = await client.query('INSERT INTO aviso(titulo, descricao, data_emissao) VALUES ($1, $2, CURRENT_DATE) RETURNING *',
+        const aviso = await client.query('INSERT INTO aviso(titulo, descricao, data_emissao) VALUES ($1, $2, cast(now() as date)) RETURNING *',
         [titulo, descricao]);
         
         const enivar = await new Nodemailer( 'vitorgabrielcl@outlook.com','vitor.cost77@gmail.com','Aviso','Aviso teste ').enviarEmail;
