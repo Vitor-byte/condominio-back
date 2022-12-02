@@ -34,7 +34,7 @@ router.get("/chamados/abertos", new chamado_controlador_1.chamadoControlador().c
 router.get("/chamados/andamento", new chamado_controlador_1.chamadoControlador().consultarEmAndamento);
 router.get("/chamados/finalizados", new chamado_controlador_1.chamadoControlador().consultarFinalizados);
 router.patch("/chamado/atender", new chamado_controlador_1.chamadoControlador().atender);
-router.get("/chamado:id", new chamado_controlador_1.chamadoControlador().consultaUsuario);
+router.get("/chamado/usuario/:id", new chamado_controlador_1.chamadoControlador().consultaUsuario);
 router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().atender);
 // Enquete 
 router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);

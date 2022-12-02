@@ -34,7 +34,7 @@ router.get("/chamados/andamento", new chamadoControlador().consultarEmAndamento)
 router.get("/chamados/finalizados", new chamadoControlador().consultarFinalizados);
 router.patch("/chamado/atender", new chamadoControlador().atender);
 
-router.get("/chamado:id", new chamadoControlador().consultaUsuario);
+router.get("/chamado/usuario/:id", new chamadoControlador().consultaUsuario);
 
 router.patch("/chamado/:id", new chamadoControlador().atender);
 // Enquete 
