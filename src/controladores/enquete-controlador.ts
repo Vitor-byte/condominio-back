@@ -4,6 +4,7 @@ import { consultaIdEnqueteCaso } from '../casos-uso/enquete/consultaId-enquete-c
 import { consultarEnqueteCaso } from '../casos-uso/enquete/consultar-enquete-caso';
 import { finalizarEnqueteCaso } from '../casos-uso/enquete/finalizar-enquete-caso';
 import { incluirEnqueteCaso } from '../casos-uso/enquete/incluir-enquete-caso';
+import { resultadoEnqueteCaso } from '../casos-uso/enquete/resultado-enquete-caso';
 import { votarEnqueteCaso } from '../casos-uso/enquete/votar-enquete-caso';
 
 export class enqueteControlador{
@@ -39,6 +40,12 @@ export class enqueteControlador{
     }
     async finalizar(request: Request, response: Response){
         const resultado = await new finalizarEnqueteCaso().handle(request.params);
+        return response.status(200).json(resultado);
+       
+
+    }
+    async resultado(request: Request, response: Response){
+        const resultado = await new resultadoEnqueteCaso().handle(request.params);
         return response.status(200).json(resultado);
        
 
