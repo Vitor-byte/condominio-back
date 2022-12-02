@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.enqueteControlador = void 0;
 const cancelar_enquete_caso_1 = require("../casos-uso/enquete/cancelar-enquete-caso");
+const consultaId_enquete_caso_1 = require("../casos-uso/enquete/consultaId-enquete-caso");
 const consultar_enquete_caso_1 = require("../casos-uso/enquete/consultar-enquete-caso");
 const finalizar_enquete_caso_1 = require("../casos-uso/enquete/finalizar-enquete-caso");
 const incluir_enquete_caso_1 = require("../casos-uso/enquete/incluir-enquete-caso");
@@ -25,6 +26,12 @@ class enqueteControlador {
     consultar(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consultar_enquete_caso_1.consultarEnqueteCaso().handle();
+            return response.status(200).json(resultado);
+        });
+    }
+    consultaId(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new consultaId_enquete_caso_1.consultaIdEnqueteCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }

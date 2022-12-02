@@ -39,6 +39,7 @@ router.patch("/chamado/:id", new chamado_controlador_1.chamadoControlador().aten
 // Enquete 
 router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
 router.get("/enquetes", new enquete_controlador_1.enqueteControlador().consultar);
+router.get("/enquete/:id", new enquete_controlador_1.enqueteControlador().consultaId);
 router.post("/enquete/votar", new enquete_controlador_1.enqueteControlador().votar);
 router.post("/enquete/finalizar/:id", new enquete_controlador_1.enqueteControlador().finalizar);
 router.patch("/enquete/cancelar/:id", new enquete_controlador_1.enqueteControlador().cancelar);
