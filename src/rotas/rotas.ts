@@ -59,7 +59,7 @@ router.get("/reserva/:id", new areaControlador().consultaReservaId);
 router.patch("/cancelar/reserva/:id", new areaControlador().cancelarReserva);
 
 //Login 
-router.get("/login", new loginControlador().verificaLogin);
+router.post("/login", new loginControlador().verificaLogin);
 
 
 

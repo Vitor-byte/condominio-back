@@ -56,7 +56,7 @@ router.get("/reservas/:id", new area_controlador_1.areaControlador().consultaIdR
 router.get("/reserva/:id", new area_controlador_1.areaControlador().consultaReservaId);
 router.patch("/cancelar/reserva/:id", new area_controlador_1.areaControlador().cancelarReserva);
 //Login 
-router.get("/login", new login_controlador_1.loginControlador().verificaLogin);
+router.post("/login", new login_controlador_1.loginControlador().verificaLogin);
 //Sindico
 router.post("/sindico", new sindico_controlador_1.sindicoControlador().incluir);
 router.delete("/sindico/:id", new sindico_controlador_1.sindicoControlador().excluir);
