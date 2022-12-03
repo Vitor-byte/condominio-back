@@ -16,6 +16,7 @@ class verificaLoginCaso {
     handle(reqBody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { email, senha } = reqBody;
+            console.log(email, senha);
             const usuarioExiste = yield postgres_1.client.query('SELECT * FROM usuario WHERE email=$1 AND senha=$2', [email, senha]);
             if (usuarioExiste.rows[0] == 0) {
                 throw new api_erros_1.BadRequestError('Email ou senha incorretos!');
