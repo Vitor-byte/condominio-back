@@ -15,7 +15,7 @@ class consultaIdEnqueteCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const enquete = yield postgres_1.client.query('SELECT * FROM enquete WHERE id_enquete=$1', [id]);
+            const enquete = yield postgres_1.client.query('SELECT DISTINCT * FROM enquete, opcoes_enquete WHERE enquete.id_enquete=$1 AND opcoes_enquete.id_enquete=$2', [id, id]);
             return enquete.rows;
         });
     }
