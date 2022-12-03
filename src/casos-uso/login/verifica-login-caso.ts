@@ -6,7 +6,7 @@ export class  verificaLoginCaso{
         console.log(email, senha)
         const usuarioExiste = await client.query('SELECT * FROM usuario WHERE email=$1 AND senha=$2',[email, senha]);
 
-        if(usuarioExiste.rows[0] == 0){
+        if(usuarioExiste.rowCount == 0){
             throw new BadRequestError('Email ou senha incorretos!');    
         }
 
