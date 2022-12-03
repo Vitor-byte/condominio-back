@@ -16,7 +16,7 @@ class consultarEnqueteCaso {
         return __awaiter(this, void 0, void 0, function* () {
             //const enquetes = await client.query('SELECT enquete.id_enquete,enquete.titulo, enquete.descricao, opcoes_enquete.opcao, opcoes_enquete.id_opcao FROM opcoes_enquete LEFT JOIN enquete ON opcoes_enquete.id_enquete = enquete.id_enquete WHERE enquete.situacao=$1',
             //["Aberta"]);
-            const enquetes = yield postgres_1.client.query('SELECT * FROM enquete ORDER BY situacao ASC');
+            const enquetes = yield postgres_1.client.query('SELECT * FROM enquete ORDER BY id_enquete DESC');
             return enquetes.rows;
         });
     }
