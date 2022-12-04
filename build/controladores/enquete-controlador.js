@@ -17,6 +17,7 @@ const consultar_enquete_caso_1 = require("../casos-uso/enquete/consultar-enquete
 const finalizar_enquete_caso_1 = require("../casos-uso/enquete/finalizar-enquete-caso");
 const incluir_enquete_caso_1 = require("../casos-uso/enquete/incluir-enquete-caso");
 const resultado_enquete_caso_1 = require("../casos-uso/enquete/resultado-enquete-caso");
+const verifica_voto_enquete_caso_1 = require("../casos-uso/enquete/verifica-voto-enquete-caso");
 const votar_enquete_caso_1 = require("../casos-uso/enquete/votar-enquete-caso");
 class enqueteControlador {
     incluir(request, response) {
@@ -64,6 +65,12 @@ class enqueteControlador {
     opcoes(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const resultado = yield new consulta_opcoes_caso_1.consultarOpcoesCaso().handle(request.params);
+            return response.status(200).json(resultado);
+        });
+    }
+    verificaVoto(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const resultado = yield new verifica_voto_enquete_caso_1.verificaVotoEnqueteCaso().handle(request.params);
             return response.status(200).json(resultado);
         });
     }

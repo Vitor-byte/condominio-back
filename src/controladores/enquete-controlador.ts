@@ -6,6 +6,7 @@ import { consultarEnqueteCaso } from '../casos-uso/enquete/consultar-enquete-cas
 import { finalizarEnqueteCaso } from '../casos-uso/enquete/finalizar-enquete-caso';
 import { incluirEnqueteCaso } from '../casos-uso/enquete/incluir-enquete-caso';
 import { resultadoEnqueteCaso } from '../casos-uso/enquete/resultado-enquete-caso';
+import { verificaVotoEnqueteCaso } from '../casos-uso/enquete/verifica-voto-enquete-caso';
 import { votarEnqueteCaso } from '../casos-uso/enquete/votar-enquete-caso';
 
 export class enqueteControlador{
@@ -53,6 +54,12 @@ export class enqueteControlador{
     }
     async opcoes(request: Request, response: Response){
         const resultado = await new consultarOpcoesCaso().handle(request.params);
+        return response.status(200).json(resultado);
+       
+
+    }
+    async verificaVoto(request: Request, response: Response){
+        const resultado = await new verificaVotoEnqueteCaso().handle(request.params);
         return response.status(200).json(resultado);
        
 

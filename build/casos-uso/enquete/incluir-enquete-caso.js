@@ -15,7 +15,7 @@ class incluirEnqueteCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { titulo, descricao, opcao1, opcao2, opcao3, opcao4, opcao5 } = reqbody;
-            const enquete = yield postgres_1.client.query('INSERT INTO enquete(titulo, descricao, situacao) VALUES ($1, $2, $3) RETURNING *', [titulo, descricao, "Aberta"]);
+            const enquete = yield postgres_1.client.query('INSERT INTO enquete(titulo, descricao, situacao, data_emissao) VALUES ($1, $2, $3) RETURNING *', [titulo, descricao, "Aberta"]);
             const id_enquete = enquete.rows[0].id_enquete;
             //for(let opcao in opcoes){
             //  const opcoes_enquete = await client.query('INSERT INTO opcoes_enquete(opcao, id_enquete) VALUES ($1, $2) RETURNING *',

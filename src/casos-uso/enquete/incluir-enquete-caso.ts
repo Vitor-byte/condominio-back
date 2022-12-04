@@ -4,7 +4,7 @@ export class incluirEnqueteCaso{
     async handle(reqbody:any){      
         const {titulo, descricao, opcao1, opcao2, opcao3,opcao4,opcao5} = reqbody;
 
-        const enquete = await client.query('INSERT INTO enquete(titulo, descricao, situacao) VALUES ($1, $2, $3) RETURNING *',
+        const enquete = await client.query('INSERT INTO enquete(titulo, descricao, situacao, data_emissao) VALUES ($1, $2, $3) RETURNING *',
         [titulo, descricao, "Aberta"]);
 
         const id_enquete = enquete.rows[0].id_enquete;
