@@ -59,7 +59,7 @@ export class enqueteControlador{
 
     }
     async verificaVoto(request: Request, response: Response){
-        const resultado = await new verificaVotoEnqueteCaso().handle(request.params);
+        const resultado = await new verificaVotoEnqueteCaso().handle(request.body);
         return response.status(200).json(resultado);
        
 
