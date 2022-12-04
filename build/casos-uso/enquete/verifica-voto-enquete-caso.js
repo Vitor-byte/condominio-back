@@ -14,8 +14,8 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class verificaVotoEnqueteCaso {
     handle(reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id_opcao, id_usuario, id_enquete } = reqbody;
-            const voto = yield postgres_1.client.query('SELECT * FROM voto_enquete WHERE id_usuario=$1 AND id_opcao=$2 AND id_enquete=$3', [id_usuario, id_opcao, id_enquete]);
+            const { id_usuario, id_enquete } = reqbody;
+            const voto = yield postgres_1.client.query('SELECT * FROM voto_enquete WHERE id_usuario=$1 AND id_enquete=$2', [id_usuario, id_enquete]);
             return voto.rows;
         });
     }
