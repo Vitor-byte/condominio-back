@@ -9,15 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.consultaIdEnqueteCaso = void 0;
+exports.consultarOpcoesCaso = void 0;
 const postgres_1 = require("../../conexao-banco/postgres");
-class consultaIdEnqueteCaso {
+class consultarOpcoesCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const enquete = yield postgres_1.client.query('SELECT  * FROM enquete WHERE id_enquete=$1', [id]);
+            const enquete = yield postgres_1.client.query('SELECT  * FROM opcoes_enquete WHERE id_enquete=$1', [id]);
             return enquete.rows;
         });
     }
 }
-exports.consultaIdEnqueteCaso = consultaIdEnqueteCaso;
+exports.consultarOpcoesCaso = consultarOpcoesCaso;

@@ -41,6 +41,7 @@ router.post("/enquete", new enquete_controlador_1.enqueteControlador().incluir);
 router.get("/enquetes", new enquete_controlador_1.enqueteControlador().consultar);
 router.get("/enquete/:id", new enquete_controlador_1.enqueteControlador().consultaId);
 router.get("/enquete/resultado/:id", new enquete_controlador_1.enqueteControlador().resultado);
+router.get("/enquete/opcoes/:id", new enquete_controlador_1.enqueteControlador().opcoes);
 router.post("/enquete/votar", new enquete_controlador_1.enqueteControlador().votar);
 router.patch("/enquete/finalizar/:id", new enquete_controlador_1.enqueteControlador().finalizar);
 router.patch("/enquete/cancelar/:id", new enquete_controlador_1.enqueteControlador().cancelar);
