@@ -15,7 +15,7 @@ class finalizarEnqueteCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const finalizar = yield postgres_1.client.query('UPDATE enquete SET situacao=$2 WHERE id_enquete=$1 RETURNING *', [id, "Finalizar"]);
+            const finalizar = yield postgres_1.client.query('UPDATE enquete SET situacao=$2 WHERE id_enquete=$1 RETURNING *', [id, "Finalizada"]);
             return finalizar.rows;
         });
     }
