@@ -45,7 +45,7 @@ router.get("/enquete/opcoes/:id", new enquete_controlador_1.enqueteControlador()
 router.post("/enquete/votar", new enquete_controlador_1.enqueteControlador().votar);
 router.patch("/enquete/finalizar/:id", new enquete_controlador_1.enqueteControlador().finalizar);
 router.patch("/enquete/cancelar/:id", new enquete_controlador_1.enqueteControlador().cancelar);
-router.get("/enquete/verifica/:id", new enquete_controlador_1.enqueteControlador().verificaVoto);
+router.post("/enquete/verifica", new enquete_controlador_1.enqueteControlador().verificaVoto);
 //Area
 router.post("/area", new area_controlador_1.areaControlador().incluir);
 router.patch("/area/:id", new area_controlador_1.areaControlador().alterar);
