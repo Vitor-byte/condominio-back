@@ -15,7 +15,7 @@ class consultaReservaIdAreaCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const reservas = yield postgres_1.client.query('SELECT * FROM reserva_area_comum WHERE id_reserva=$1', [id]);
+            const reservas = yield postgres_1.client.query('SELECT  * FROM area_comum LEFT JOIN reserva_area_comum ON  area_comum.id_area_comum = reserva_area_comum.id_area_comum WHERE reserva_area_comum.id_reserva=$1', [id]);
             return reservas.rows;
         });
     }
