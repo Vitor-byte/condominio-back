@@ -15,7 +15,7 @@ class consultaUsuarioChamadoCaso {
     handle(reqParams) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE id_usuario=$1 ORDER BY id_enquete ASC', [id]);
+            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE id_usuario=$1 ORDER BY id_chamado ASC', [id]);
             return chamados.rows;
         });
     }
