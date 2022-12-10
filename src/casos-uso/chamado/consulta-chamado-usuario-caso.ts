@@ -6,7 +6,7 @@ export class consultaUsuarioChamadoCaso{
     async handle(reqParams: any){
         const {id} = reqParams;
         
-        const chamados = await client.query('SELECT * FROM chamado WHERE id_usuario=$1',
+        const chamados = await client.query('SELECT * FROM chamado WHERE id_usuario=$1 ORDER BY id_enquete ASC',
         [id]);
 
         return chamados.rows;

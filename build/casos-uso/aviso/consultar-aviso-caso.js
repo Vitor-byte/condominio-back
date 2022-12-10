@@ -14,7 +14,7 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class consultarAvisoCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const avisos = yield postgres_1.client.query('SELECT * FROM aviso');
+            const avisos = yield postgres_1.client.query('SELECT * FROM aviso ORDER BY id_aviso ASC');
             return avisos.rows;
         });
     }

@@ -14,7 +14,7 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class consultarChamadoAbertoCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE situacao=$1', ["Aberto"]);
+            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE situacao=$1 ORDER BY id_usuario ASC', ["Aberto"]);
             return chamados.rows;
         });
     }

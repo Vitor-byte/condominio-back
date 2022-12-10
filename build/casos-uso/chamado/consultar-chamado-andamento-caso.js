@@ -14,7 +14,7 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class consultarChamadoEmAndamentoCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE situacao=$1', ["Em andamento"]);
+            const chamados = yield postgres_1.client.query('SELECT * FROM chamado WHERE situacao=$1 ORDER BY id_usuario ASC', ["Em andamento"]);
             return chamados.rows;
         });
     }
