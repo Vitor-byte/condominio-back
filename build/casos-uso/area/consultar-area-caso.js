@@ -14,7 +14,7 @@ const postgres_1 = require("../../conexao-banco/postgres");
 class consultarAreaCaso {
     handle() {
         return __awaiter(this, void 0, void 0, function* () {
-            const areas = yield postgres_1.client.query('SELECT * FROM area_comum ORDER BY id_area_comum ASC');
+            const areas = yield postgres_1.client.query('SELECT * FROM area_comum');
             return areas.rows;
         });
     }
