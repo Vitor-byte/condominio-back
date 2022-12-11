@@ -16,7 +16,7 @@ class alterarCondominoCaso {
     handle(reqParams, reqbody) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = reqParams;
-            const { rg, nome, bloco, unidade, senha } = reqbody;
+            const { rg, nome, bloco, inadimplente, situacao, unidade, senha } = reqbody;
             const usuarioExiste = yield postgres_1.client.query('SELECT COUNT(1) FROM usuario WHERE id_usuario=$1', [id]);
             if (usuarioExiste.rows[0].count == 0) {
                 throw new api_erros_1.BadRequestError("Usuario não existe!");
@@ -25,7 +25,7 @@ class alterarCondominoCaso {
             if (rgExiste.rows[0].count > 0) {
                 throw new api_erros_1.BadRequestError('RG inválido!');
             }
-            const usuario = yield postgres_1.client.query('UPDATE usuario SET rg=$2, nome=$3, bloco=$4, unidade=$5,senha=$6 WHERE id_usuario=$1 RETURNING *', [id, rg, nome, bloco, unidade, senha]);
+            const usuario = yield postgres_1.client.query('UPDATE usuario SET rg=$2, nome=$3, inadimplente=$4, situacao=$5 bloco=$6, unidade=$7,senha=$8 WHERE id_usuario=$1 RETURNING *', [id, rg, nome, inadimplente, situacao, bloco, unidade, senha]);
             return usuario.rows;
         });
     }
